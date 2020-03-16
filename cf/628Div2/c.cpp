@@ -30,13 +30,25 @@ const int dir[4][2] = {1,0,-1,0,0,1,0,-1};
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 vi G[MAXN];
-int n;
+int n,ans[MAXN];
 signed main(void){
 	scanf("%d",&n);
 	for(int i = 1,u,v;i < n;i++){
 		scanf("%d%d",&u,&v);
-		G[u].push_back(v);
-		G[v].push_back(u);
+		G[u].push_back(i);
+		G[v].push_back(i);
+		ans[i] = -1;
+	}
+	pii mx(0,0);
+	for(int i = 1;i <= n;i++)
+		mx = max(mx,make_pair((int)G[i].size(),i));
+	int cur = 0;
+	for(int i : G[mx.second])
+		ans[i] = cur++;
+	for(int i = 1;i < n;i++){
+		if(ans[i]==-1)
+			ans[i] = cur++;
+		printf("%d\n",ans[i]);
 	}
 	return 0;
 }
