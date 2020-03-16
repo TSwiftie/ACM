@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: c.cpp
+	> File Name: d.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Mon 16 Mar 2020 01:55:00 PM CST
+	> Created Time: Mon 16 Mar 2020 01:59:58 PM CST
 ************************************************************/
 
 #pragma GCC optimize(2)
@@ -29,17 +29,20 @@ const int MOD = 1e9+7;
 const int dir[4][2] = {1,0,-1,0,0,1,0,-1};
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-int d[MAXN],u[MAXN],v[MAXN],n,h,t;
 signed main(void){
-	scanf("%d",&n);
-	h = 0,t = n-1;
-	for(int i = 1;i < n;i++){
-		scanf("%d%d",u+i,v+i);
-		d[u[i]]++;d[v[i]]++;
+	ll u, v;
+	scanf("%lld %lld",&u,&v);
+	if(u > v || u%2!=v%2){
+		printf("-1\n");
+		return 0;
 	}
-	for(int i = 1;i < n;i++){
-		if(d[u[i]]==1||d[v[i]]==1) printf("%d\n",h++);
-		else printf("%d\n",--t);
+	if(u==v){
+		if(!u) printf("0\n");
+		else printf("1\n%lld\n",u);
+		return 0;
 	}
+	ll x = (v-u)/2;
+	if(u&x) printf("3\n%lld %lld %lld\n",u,x,x);
+	else printf("2\n%lld %lld\n",(u^x),x);
 	return 0;
 }
