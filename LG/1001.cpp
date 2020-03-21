@@ -5,6 +5,7 @@
 	> Created Time: Thu 19 Mar 2020 12:05:59 PM CST
 ************************************************************/
 
+#include <algorithm>
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
@@ -32,6 +33,6 @@ const double EPS = 1e-8;
 signed main(void){
 	ll a, b;
 	cin >> a >> b;
-	cout << a + b << endl;
+	cout << a+b << endl;
 	return 0;
 }
