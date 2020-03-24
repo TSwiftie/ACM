@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: b.cpp
+	> File Name: c.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Tue 24 Mar 2020 12:32:50 PM CST
+	> Created Time: Tue 24 Mar 2020 12:38:35 PM CST
 ************************************************************/
 
 #pragma GCC optimize(2)
@@ -29,33 +29,21 @@ const int MOD = 1e9+7;
 const int dir[4][2] = {1,0,-1,0,0,1,0,-1};
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-bool vis[MAXN];
+int sx[MAXN],sy[MAXN];
+int fx[MAXN],fy[MAXN];
 signed main(void){
-	int t;
-	scanf("%d",&t);
-	while(t--){
-		int n;
-		scanf("%d",&n);
-		memset(vis,0,sizeof vis);
-		int x,y,z = 0,p;
-		for(int i = 1;i <= n;i++){
-			scanf("%d",&y);
-			p = 0;
-			while(y--){
-				scanf("%d",&x);
-				if(!p&&!vis[x]) p = vis[x] = 1;
-			}
-			if(!p) z = i;
-		}
-		if(!z) printf("OPTIMAL\n");
-		else{
-			for(int i = 1;i <= n;i++){
-				if(!vis[i]){
-					printf("IMPROVE\n%d %d\n",z,i);
-					break;
-				}
-			}
-		}
+	IOS;
+	int n, m, k;
+	cin >> n >> m >> k;
+	for(int i = 1;i <= k;i++)
+		cin >> sx[i] >> sy[i];
+	for(int i = 1;i <= k;i++)
+		cin >> fx[i] >> fy[i];
+	string ans = string(n-1,'D')+string(m-1,'R');
+	for(int i = 0;i < m;i++){
+		ans += string(n-1,"UD"[i&1]);
+		if(i!=m-1) ans += 'L';
 	}
+	cout << ans.size() << "\n" << ans << endl;
 	return 0;
 }
