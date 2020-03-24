@@ -10,6 +10,7 @@
         "cpp": "g++ $fileName  && ./a.out",
     },
     "terminal.integrated.fontFamily": "'Fira Code Retina', 'Fira Code Retina', monospace, 'Droid Sans Fallback'",
+    "terminal.integrated.fontSize": 16,
     "editor.fontFamily": "'Fira Code Retina', 'Fira Code Retina', monospace, 'Droid Sans Fallback'",
     "files.associations": {
         "array": "cpp",
