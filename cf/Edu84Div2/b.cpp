@@ -32,5 +32,7 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 signed main(void){
 	int a, b;
+	cin >> a >> b;
+	cout << a + b << endl;
 	return 0;
 }
