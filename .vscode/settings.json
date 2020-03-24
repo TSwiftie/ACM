@@ -26,5 +26,8 @@
         "initializer_list": "cpp",
         "regex": "cpp",
         "valarray": "cpp"
-    }
+    },
+    "vim.useCtrlKeys": false,
+    "path-intellisense.showHiddenFiles": true,
+    "path-intellisense.extensionOnImport": true,
 }
