@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: e.cpp
+	> File Name: a.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Tue 24 Mar 2020 04:50:07 PM CST
+	> Created Time: Tue 24 Mar 2020 09:10:16 PM CST
 ************************************************************/
 
 #pragma GCC optimize(2)
@@ -30,9 +30,21 @@ const int MOD = 1e9+7;
 const int dir[4][2] = {1,0,-1,0,0,1,0,-1};
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+int r[MAXN],c[MAXN];
+int n, m, a, b;
+char ch[20][MAXN];
+void solve(){
+	scanf("%d%d%d%d",&n,&m,&a,&b);
+	for(int i = 0;i < n;i++){
+		scanf("%s",ch[i]);
+		for(int j = 0;j < m;j++)
+			if(ch[i][j]=='*') r[i]++,c[j]++;
+	}
+}
 signed main(void){
-	int a;
-	cin >> a;
-	cout << (1LL<<32) << endl;
+	int t;
+	scanf("%d",&t);
+	while(t--){
+	}
 	return 0;
 }

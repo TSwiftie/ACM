@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: e.cpp
+	> File Name: c.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Tue 24 Mar 2020 04:50:07 PM CST
+	> Created Time: Tue 24 Mar 2020 09:38:20 PM CST
 ************************************************************/
 
 #pragma GCC optimize(2)
@@ -30,9 +30,22 @@ const int MOD = 1e9+7;
 const int dir[4][2] = {1,0,-1,0,0,1,0,-1};
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+ld n, m;
+ld check(ll mid){
+	return (n-1-mid+n)*mid/2.0;
+}
 signed main(void){
-	int a;
-	cin >> a;
-	cout << (1LL<<32) << endl;
+	ll t;
+	cin >> t;
+	while(t--){
+		cin >> n >> m;
+		ll L = 0,R = n-1;
+		while(L <= R){
+			ll mid = (L+R)>>1;
+			if(check(mid) > m) R = mid-1;
+			else L = mid+1;
+		}
+		cout << L << endl;
+	}
 	return 0;
 }
