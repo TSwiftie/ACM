@@ -5,7 +5,6 @@
 	> Created Time: Tue 24 Mar 2020 10:28:01 AM CST
 ************************************************************/
 
-#include <ratio>
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
@@ -30,6 +29,26 @@ const int MOD = 1e9+7;
 const int dir[4][2] = {1,0,-1,0,0,1,0,-1};
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+vi G[MAXN];
+void solve(){
+	int n;
+	scanf("%d",&n);
+	set<int>s;
+	for(int i = 1;i <= n;i++) s.insert(s);
+	for(int i = 1,x,v;i <= n;i++){
+		scanf("%d",&x);
+		while(x--){
+			scanf("%d",&v);
+			G[i].push_back(v);
+		}
+	}
+	vi lost;
+	for(int i = 1;i <= n;i++){
+	}
+}
 signed main(void){
+	int t;
+	scanf("%d",&t);
+	while(t--) solve();
 	return 0;
 }
