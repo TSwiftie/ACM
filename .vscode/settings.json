@@ -1,0 +1,29 @@
+{
+    "editor.fontSize": 17,
+    "code-runner.preserveFocus": false,
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.fileDirectoryAsCwd": true,
+    "code-runner.executorMap": {
+        "c": "gcc $fileName  && ./a.out",
+        "cpp": "g++ $fileName  && ./a.out",
+    },
+    "terminal.integrated.fontFamily": "'Fira Code Retina', 'Fira Code Retina', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'Fira Code Retina', 'Fira Code Retina', monospace, 'Droid Sans Fallback'",
+    "files.associations": {
+        "array": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "rope": "cpp",
+        "initializer_list": "cpp",
+        "regex": "cpp",
+        "valarray": "cpp"
+    }
+}
