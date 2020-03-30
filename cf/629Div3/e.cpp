@@ -42,6 +42,7 @@ bool jugde(int u,int v){
 	return tin[u] <= tin[v] && tout[v] <= tout[u]; 
 }
 signed main(void){
+	IOS;
 	int n, m;
 	cin >> n >> m;
 	for(int i = 0,x,y;i < n-1;i++){
