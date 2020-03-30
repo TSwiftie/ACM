@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: b.cpp
+	> File Name: c.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Mon 30 Mar 2020 05:16:15 PM CST
+	> Created Time: Mon 30 Mar 2020 05:20:26 PM CST
 ************************************************************/
 
 #pragma GCC optimize(2)
@@ -26,14 +26,22 @@ const int INF = 0x3f3f3f3f;
 const ll INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+const int N = 5e4+10;
+char ch[N],a[N],b[N];
 signed main(void){
-	ll t, n, k, m, f;
-	for(cin >> t;t;t--){
-		cin >> n >> k;
-		string s(n,'a');
-		for(f=(m=0)+1;m<k;m+=f++);
-		s[n-f] = s[n-f+m-k+1] = 'b';
-		cout << s << endl;
+	int t,n;
+	for(cin >> t;t--;){
+		cin >> n;
+		string a = "",b = "",s;
+		cin >> s;
+		bool mark = true;
+		for(int i = 0;i < n;i++)
+			if(mark){
+				if(s[i]=='2') a+='1',b+='1';
+				else if(s[i]=='0') a+='0',b+='0';
+				else a += '1',b += '0', mark = false;
+			}else a += '0',b += s[i];
+		cout << a << endl << b << endl;
 	}
 	return 0;
 }
