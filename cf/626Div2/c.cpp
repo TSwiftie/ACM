@@ -26,6 +26,15 @@ const int INF = 0x3f3f3f3f;
 const ll INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+string s;
 signed main(void){
+	int n,cnt = 0,ans = 0;
+	cin >> n >> s;
+	for(int i = 0;i < n;i++){
+		if(s[i]==')') cnt--;
+		else cnt++;
+		if(cnt<0||(!cnt&&s[i]=='(')) ans++;
+	}
+	cout << (cnt!=0?-1:ans) << endl;
 	return 0;
 }
