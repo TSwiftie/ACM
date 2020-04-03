@@ -10,7 +10,7 @@
 #include <ext/rope>
 #define lowbit(x) (x&-x)
 #define SZ(x) ((int)x.size())
-#define all(x) x.begin(),x.end()
+#define all(x) (x.begin(),x.end())
 #define lc (o<<1)
 #define rc (o<<1|1)
 #define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)
