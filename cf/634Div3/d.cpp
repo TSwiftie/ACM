@@ -31,12 +31,10 @@ char ch[N][N];
 signed main(void){
 	int t;
 	for(scanf("%d",&t);t--;){
-		for(int i = 0;i < 9;i++)
-			scanf("%s",ch[i]);
-		char st = ch[0][0];
 		for(int i = 0;i < 9;i++){
-			if(i==8) ch[i][i] = st;
-			else ch[i][i] = ch[(i+1)%9][(i+1)%9];
+			scanf("%s",ch[i]);
+			for(int j = 0;j < 9;j++)
+				if(ch[i][j]=='9') ch[i][j] = '1';
 		}
 		for(int i = 0;i < 9;i++)
 			printf("%s\n",ch[i]);
