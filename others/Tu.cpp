@@ -41,6 +41,7 @@ bool cmp(const Point &a,const Point &b){
 }
 double Solve(int l,int r,int flag){
 	int id = -1;
+	//double Max = 0
 	double Max = 0,lenl = Dis(s[l],s[r]),len;
 	for(int i = l+1;i < r;i++){
 		double area = Area(s[l],s[r],s[i])*flag;
@@ -51,6 +52,7 @@ double Solve(int l,int r,int flag){
 		}
 	}
 	if(id==-1) return 0;
+	//return Solve(l,id,flag)+Solve(id,r,flag)+Max;
 	return Solve(l,id,flag)+Solve(id,r,flag)+len;
 }
 signed main(void){
@@ -59,6 +61,7 @@ signed main(void){
 	for(int i = 1;i <= n;i++)
 		scanf("%lf%lf",&s[i].x,&s[i].y);
 	sort(s+1,s+1+n,cmp);
+	//prinf("%.2lf\n",Solve(1,n,1)+Solve(1,n,-1));
 	printf("%.2lf\n",Solve(1,n,1)+Solve(1,n,-1)+Dis(s[1],s[n])*2);
 	return 0;
 }
