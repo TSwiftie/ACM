@@ -2,7 +2,7 @@
 	> File Name: b.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Sat 25 Apr 2020 08:44:36 PM CST
+	> Created Time: Sun 26 Apr 2020 09:14:42 AM CST
 ************************************************************/
 
 #pragma GCC optimize(2)
@@ -27,30 +27,15 @@ const ll INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 2e5+10;
-int t, n, k;
-int a[N],s[N];
+int t, n, k, a[N],s[N];
 signed main(void){
 	for(scanf("%d",&t);t--;){
 		scanf("%d%d",&n,&k);
-		s[0] = 0,a[0] = -1,a[n+1] = -1;
-		for(int i = 1;i <= n;i++)
-			scanf("%d",a+i);
-		for(int i = 1;i < n;i++){
-			if(a[i] > a[i-1] && a[i] > a[i+1])
-				s[i] = s[i-1] + 1;
-			else s[i] = s[i-1];
-		}
-		int ans = 0,ansIndex = 0;
-		for(int i = 1;i <= n-k+1;i++){
-			int now = s[i+k-1]-s[i-1];
-			if(a[i]>a[i-1]&&a[i]>a[i+1]) now--;
-			if(a[i+k-1]>a[i+k-2]&&a[i+k-1]>a[i+k]) now--;
-			if(now > ans){
-				ans = now;
-				ansIndex = i;
-			}
-		}
-		printf("%d %d\n",ans+1,ansIndex);
+		for(int i = 1;i <= n;i++) scanf("%d",a+i);
+		for(int i = 2;i < n;i++) s[i] = s[i-1] + (a[i]>a[i-1] && a[i] > a[i+1]);
+		int ma = -1,id = 0;
+		for(int i = 1,j = k;j <= n;i++,j++) if(s[j-1]-s[i]>ma) id = i,ma = s[j-1]-s[i];
+		printf("%d %d\n",ma+1,id);
 	}
 	return 0;
 }

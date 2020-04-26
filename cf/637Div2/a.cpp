@@ -32,15 +32,7 @@ signed main(void){
 	for(cin >> t;t--;){
 		ll n, a, b, c, d;
 		cin >> n >> a >> b >> c >> d;
-		ll l = c-d-n*a,r = c+d-n*a;
-		bool mark = false;
-		for(ll i = 0;i <= n;i++)
-			if(l <= i*b-(n-i)*b && i*b-(n-i)*b <= r){
-				mark = true;
-				break;
-			}
-		if(mark) cout << "YES" << endl;
-		else cout << "NO" << endl;
+		cout << (((a-b)*n>c+d || (a+b)*n<c-d) ? "No" :"Yes") << endl;
 	}
 	return 0;
 }
