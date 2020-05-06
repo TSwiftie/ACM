@@ -32,8 +32,13 @@ int main(void){
 	}
 
 	printf("Names list:\n");
+
+	//循环输出
 	for(int i = 0;i < N;i++)
 		printf("%c",a[i]);
+	//整个一次性输出
+	printf("%s",a);
+
 	puts("");
 	return 0;
 }
