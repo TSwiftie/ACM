@@ -40,7 +40,7 @@ signed main(void){
 		for(int b = 0;b <= g[2];b++)
 			for(int c = 0;c <= g[3];c++)
 				for(int d = 0;d <= g[4];d++){
-					int r = 1+a+b*2+c*3+d*c;
+					int r = 1+a+b*2+c*3+d*4;
 					if(a) dp[a][b][c][d] = max(dp[a][b][c][d],dp[a-1][b][c][d]+aa[r]);
 					if(b) dp[a][b][c][d] = max(dp[a][b][c][d],dp[a][b-1][c][d]+aa[r]);
 					if(c) dp[a][b][c][d] = max(dp[a][b][c][d],dp[a][b][c-1][d]+aa[r]);
