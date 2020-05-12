@@ -31,6 +31,8 @@ signed main(void){
 	for(scanf("%d",&t);t--;){
 		LL n, k;
 		scanf("%lld%lld",&n,&k);
+		LL pre = k/(n-1),suf = k%(n-1);
+		printf("%lld\n",pre*n+(suf?suf:-1LL));
 	}
 	return 0;
 }
