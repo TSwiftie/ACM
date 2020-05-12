@@ -1,39 +1,39 @@
-#include<iostream>	
-#include<cstring>
-#include<string>
+/************************************************************
+	> File Name: test.cpp
+	> Author: TSwiftie
+	> Mail: 2224273204@qq.com 
+	> Created Time: Tue 12 May 2020 11:05:35 PM CST
+************************************************************/
+
+#pragma GCC optimize(2)
+#include <bits/stdc++.h>
+#include <ext/rope>
+#define lowbit(x) (x&-x)
+#define SZ(x) ((int)x.size())
+#define all(x) x.begin(),x.end()
+#define lc (o<<1)
+#define rc (o<<1|1)
+#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)
 using namespace std;
-class Clock	//时钟类的声明
-{
-public:	//外部接口，公有成员函数
-	void SetTime(string s, int NewH = 0, int NewM = 0, int NewS = 0);
-	void ShowTime();
-private:	//私有数据成员
-	int hp, mp, sp; 
-	string a;
-};
-//时钟类成员函数的具体实现
-void Clock::SetTime(string s, int NewH, int NewM, int NewS)
-{
-	a = s;
-	hp = NewH;
-	mp = NewM;
-	sp = NewS;
-}
-void Clock::ShowTime()
-{
-	cout << a << ':' << hp << ":" << mp << ":" << sp << endl;
-}
-int main(void)
-{
-	Clock  Clock1, Clock2, Clock3, Clock4;	//定义对象myClock
-	Clock1.SetTime("巴黎时间", 7, 34, 12);	
-	Clock1.ShowTime();	//显示时间
-	Clock2.SetTime("东京时间", 8, 30, 30);  //设置时间为8：30：30
-	Clock2.ShowTime();	//显示时间
-	Clock3.SetTime("伦敦时间", 12, 54, 33);
-	Clock3.ShowTime();
-	Clock4.SetTime("纽约时间", 13, 10, 20);
-	Clock4.ShowTime();
+typedef long long LL;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<int> vi;
+typedef vector<LL> vll;
+typedef long double ld;
+typedef pair<int,int> pii;
+typedef pair<LL,LL> pll;
+const int INF = 0x3f3f3f3f;
+const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
+const double PI = acos(-1.0);
+const double EPS = 1e-8;
+signed main(void){
+	/*
+	 *  for(int i = 0;i < n;i++)
+	 *		for(int j = 0;j < i;j++){
+	 *			int lcm = lcm(a[i],a[j]);
+	 *			ans = gcd(lcm,ans);
+	 *		}
+	 * */
 	return 0;
 }
-
