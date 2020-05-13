@@ -28,7 +28,12 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 signed main(void){
-	ios::sync_with_stdio(false);
-	cin.tie(0);cout.tie(0);
+	int dis = 0,cnt = 0;
+	for(int n = 10000;;n >>= 1){
+		dis += 1.5*n;
+		cnt++;
+		if(n/2 < 5) break;
+	}
+	printf("%d %d\n",cnt,dis);
 	return 0;
 }
