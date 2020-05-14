@@ -1,51 +1,80 @@
-/************************************************************
-	> File Name: t.cpp
-	> Author: TSwiftie
-	> Mail: 2224273204@qq.com 
-	> Created Time: Tue 21 Apr 2020 08:41:38 PM CST
-************************************************************/
-
-#pragma GCC optimize(2)
-#include <bits/stdc++.h>
-#include <ext/rope>
-#define lowbit(x) (x&-x)
-#define SZ(x) ((int)x.size())
-#define all(x) x.begin(),x.end()
-#define lc (o<<1)
-#define rc (o<<1|1)
-#define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)
+#include<iostream>
+#include<math.h>
+#include<string.h>
+#define max 20
 using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
-typedef vector<int> vi;
-typedef vector<ll> vll;
-typedef long double ld;
-typedef pair<int,int> pii;
-typedef pair<ll,ll> pll;
-const int INF = 0x3f3f3f3f;
-const ll INF_ll = 0x3f3f3f3f3f3f3f3fLL;
-const double PI = acos(-1.0);
-const double EPS = 1e-8;
-inline int read(){
-	int x = 0,f = 1;
-	char ch = getchar();
-	for(;ch>'9'||ch<'0';ch = getchar()) if(ch=='-') f = -1;
-	for(;ch>='0'&&ch<='9';ch = getchar()) x = (x<<1)+(x<<3)+(ch^48);
-	return x*f;
+int flag[max][max]={0};
+typedef struct
+{
+	int x1,y1;
+	int x2,y2;
+}piont;
+int xielv(int x1,int y1,int x2,int y2)
+{
+	return x1*y2-x2*y1;
 }
-int a[3003][3003];
-int dp[3003][3003];
-signed main(void){
-	int n = read(),m = read();
-	for(int i = 1;i <= n;i++)
-		for(int j = 1;j <= m;j++)
-			a[i][j] = read();
-	dp[n][m] = 1;
-	for(int i = n;i >= 1;i--)
-		for(int j = m;j >= 1;j--){
-			if(a[i][j]==1) continue;
-			dp[i][j] = (dp[i][j]+dp[i+1][j]+dp[i][j+1])%2333;
-		}
-	printf("%d\n",dp[1][1]);
+int Max(int a,int b)
+{
+	return a>b?a:b;
+}
+int Min(int a,int b)
+{
+	return a>b?b:a;
+}
+int inter(piont A, piont B)
+{
+	int c[4];
+	c[0]=xielv(A.x2-A.x1,A.y2-A.y1,B.x1-A.x1,B.y1-A.y1);
+	c[1]=xielv(A.x2-A.x1,A.y2-A.y1,B.x2-A.x1,B.y2-A.y1);
+	c[2]=xielv(B.x2-B.x1,B.y2-B.y1,A.x1-B.x1,A.y1-B.y1);
+	c[3]=xielv(B.x2-B.x1,B.y2-B.y1,A.x2-B.x1,A.y2-B.y1);
+	if(c[0]*c[1]<=0&&c[2]*c[3]<=0) return 1;
 	return 0;
 }
+int main()
+{
+	piont p[max];
+	int n,a,b;
+	while(cin>>n)
+	{
+		memset(flag, 0, sizeof(flag));
+		for(int i=1;i<=n;i++)
+	    {
+		    cin>>p[i].x1>>p[i].y1>>p[i].x2>>p[i].y2;
+	    }
+	    for(int i=1;i<=n;i++)
+	    {
+		    flag[i][i]=1;
+		    for(int j=i+1;j<=n;j++)
+		    {
+			    if(inter(p[i],p[j])==1)
+			    {
+				flag[i][j]=1;
+				flag[j][i]=1;
+			    }
+		    }
+	    }
+	    for(int i=1;i<=n;i++)
+	    {
+		    for(int j=1;j<=n;j++)
+		    {
+			    for(int k=1;k<=n;k++)
+			    {
+				    if(flag[i][j]==1&&flag[j][k]==1)
+				    {
+					    flag[i][k]=1;
+					    flag[k][i]=1; 
+				    }
+			    }
+		    }
+	    }
+	    while(cin>>a>>b)
+	    {
+		    if(a==0&&b==0) break;
+		    if(flag[a][b]==1) cout<<"CONNECTED"<<endl;
+		    else cout<<"NOT CONNECTED"<<endl;
+	    }
+	}
+	return 0;
+}
+
