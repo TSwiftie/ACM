@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: d.cpp
+	> File Name: e.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Sat 16 May 2020 09:13:02 AM CST
+	> Created Time: Sat 16 May 2020 09:50:22 AM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -26,40 +26,38 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-const int N = 2e5+10;
-struct node{
-	int l,r;
-	node(){}
-	node(int _l,int _r): l(_l),r(_r) {}
-	bool operator<(const node &a) const{
-		if((r-l+1)==(a.r-a.l+1))
-			return l > a.l;
-		return (r-l+1) < (a.r-a.l+1);
+const int N = 1e6+10;
+int solve(string &s){
+	int n = SZ(s);
+	int al = count(all(s),'1');
+	int ans = al;
+	vi res(n);
+	int pref = 0;
+	for(int i = 0;i < n;i++){
+		int cur = (s[i]=='1');
+		pref += cur;
+		res[i] = 1-cur;
+		if(i > 0) res[i] += min(res[i-1],pref-cur);
+		ans = min(ans,res[i]+al-pref);
 	}
-};
-int a[N];
+	return ans;
+}
 signed main(void){
+	IOS;
 	int t;
-	for(scanf("%d",&t);t--;){
-		int n,cnt = 0;
-		scanf("%d",&n);
-		priority_queue<node>q;
-		q.push(node(1,n));
-		while(q.size()){
-			node u = q.top();
-			q.pop();
-			if(u.l==u.r){
-				a[u.l] = ++cnt;
-				continue;
-			}else{
-				int mid = (u.l+u.r)>>1;
-				a[mid] = ++cnt;
-				if(u.l <= mid-1) q.push(node(u.l,mid-1));
-				if(mid+1 <= u.r) q.push(node(mid+1,u.r));
-			}
-		}
-		for(int i = 1;i <= n;i++)
-			printf("%d%c",a[i]," \n"[i==n]);
+	for(cin >> t;t--;){
+		int n, k;
+		string s;
+		cin >> n >> k;
+		cin >> s;
+		vector<string> val(k);
+		int cnt = count(all(s),'1');
+		for(int i = 0;i < n;i++)
+			val[i%k] += s[i];
+		int ans = 1e9;
+		for(auto &it : val)
+			ans = min(ans,int(solve(it)+(cnt-count(all(it),'1'))));
+		cout << ans << endl;
 	}
 	return 0;
 }
