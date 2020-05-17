@@ -1,2 +1,2 @@
 # My CodeRep
-This is a TSwiftie's CodeRep.
+This is TSwiftie's CodeRep.
