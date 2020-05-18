@@ -2,7 +2,7 @@
 	> File Name: d.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Sun 17 May 2020 08:28:11 PM CST
+	> Created Time: Mon 18 May 2020 05:42:19 PM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -26,38 +26,30 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+const ll p = 1e9+7;
 const int N = 1e5+10;
-int n, m;
-vi G[N];
-int pre[N];
+ll ksm(ll a,ll b){
+	ll res = 1;
+	while(b){
+		if(b&1) res = res * a % p;
+		a = a * a % p;
+		b >>= 1;
+	}
+	return res;
+}
+ll a[N],b[N];
 signed main(void){
 	IOS;
-	cin >> n >> m;
-	for(int i = 1,u,v;i <= m;i++){
-		cin >> u >> v;
-		G[u].push_back(v);
-		G[v].push_back(u);
+	int n;
+	cin >> n;
+	for(int i = 1;i <= n;i++) cin >> a[i];
+	for(int i = 1;i <= n;i++) cin >> b[i];
+	ll A = 1,B = 1;
+	for(int i = 1;i <= n;i++){
+		A = (A * (a[i]-b[i]))%p;
+		B = (B * a[i])%p;
 	}
-	memset(pre,-1,sizeof pre);
-	queue<int>q;
-	q.push(1);
-	while(q.size()){
-		int u = q.front();
-		q.pop();
-		for(int &v : G[u]){
-			if(pre[v]==-1){
-				pre[v] = u;
-				q.push(v);
-			}
-		}
-	}
-	for(int i = 2;i <= n;i++)
-		if(pre[i]==-1){
-			cout << "No" << endl;
-			return 0;
-		}
-	cout << "Yes" << endl;
-	for(int i = 2;i <= n;i++)
-		cout << pre[i] << endl;
+	A = (B-A+p)%p;
+	cout << A*ksm(B,p-2)%p << endl;
 	return 0;
 }
