@@ -39,6 +39,21 @@ signed main(void){
 		if(i&1) ans += 1;
 		else ans /= 2;
 	}
+	ans = 0;
+	for(int i = 1;i <= 2*n;i++){
+		if(i<=n) ans += 1;
+		else ans /= 2;
+	}
+	printf("%lf\n",ans);
+	ans = 0;
+	int count = 0;
+	for(int i = 1;i < 10;i++){
+		if(i <= 5){
+			ans = pow(2,i);
+			count++;
+		}
+		ans = count/ans;
+	}
 	printf("%lf\n",ans);
 	return 0;
 }
