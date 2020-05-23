@@ -28,13 +28,10 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 3e4+10;
 unordered_map<string,int>mp;
-unordered_map<int,string>rmp;
-string a,b;
+//unodermap<string,int>mp;
+string a,b,str[N];
 vi G[N];
 int in[N];
-bool cmp(int a,int b){
-	return rmp[a] < rmp[b];
-}
 signed main(void){
 	IOS;
 	int t;
@@ -43,9 +40,8 @@ signed main(void){
 		int n, m;
 		cin >> n >> m;
 		for(int i = 1;i <= n;i++){
-			cin >> a;
-			mp[a] = i;
-			rmp[i] = a;
+			cin >> str[i];
+			mp[str[i]] = i;
 		}
 		for(int i = 1;i <= m;i++){
 			cin >> a >> b;
@@ -55,7 +51,7 @@ signed main(void){
 		priority_queue<string,vector<string>,greater<string> >q;
 		for(int i = 1;i <= n;i++)
 			if(!in[i])
-				q.push(rmp[i]);
+				q.push(str[i]);
 		cout << "Case #" << cas << ":" << endl;
 		if(!SZ(q)) cout << "Impossible" << endl;
 		else{
@@ -65,11 +61,12 @@ signed main(void){
 				cout << cur << endl;
 				for(int v : G[mp[cur]]){
 					if(!--in[v])
-						q.push(rmp[v]);
+						q.push(str[v]);
 				}
 			}
 		}
-		mp.clear();rmp.clear();
+		for(int i = 1;i <= n;i++) G[i].clear();
+		mp.clear();
 	}
 	return 0;
 }
