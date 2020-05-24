@@ -26,36 +26,11 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-int a[10] = {1,2,3,4,5},b[10] = {10,21,32,41,15};
+char ch[1024];
 signed main(void){
-
-	for(int i = 0;i < 5;i++){
-		a[i] = rand()%100;
-		b[i] = rand()%100;
-	}
-
-	for(int i = 0;i < 5;i++)
-		printf("%d%c",a[i]," \n"[i==4]);
-
-	for(int cas = 0;cas < 5;cas++){
-		for(int i = 0;i < 5;i++)
-			a[i] ^= b[i];
-		for(int i = 0;i < 5;i++)
-			a[i] *= b[i];
-		for(int i = 0;i < 5;i++)
-			printf("%d%c",a[i]," \n"[i==4]);
-	}
-
-	for(int cas = 0;cas < 5;cas++){
-		for(int i = 0;i < 5;i++)
-			a[i] /= b[i];
-		for(int i = 0;i < 5;i++)
-			a[i] ^= b[i];
-		for(int i = 0;i < 5;i++)
-			printf("%d%c",a[i]," \n"[i==4]);
-	}
-
-	for(int i = 0;i < 5;i++)
-		printf("%d%c",a[i]," \n"[i==4]);
+	FILE *FileSource = fopen("./test.txt","wb");
+	scanf("%s",ch);
+	fwrite(ch,1,1024,FileSource);
+	fclose(FileSource);
 	return 0;
 }
