@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: tttt.cpp
+	> File Name: e.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Sun 24 May 2020 01:33:34 PM CST
+	> Created Time: Sun 24 May 2020 02:15:40 PM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -26,7 +26,21 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+const int N = 1e3+10;
+int a[N][N];
 signed main(void){
-	system("sleep 5s");
+	int n, m;
+	scanf("%d%d",&n,&m);
+	for(int i = 1;i <= n;i++)
+		for(int j = 1;j <= n;j++)
+			scanf("%d",&a[i][j]);
+	for(int i = 1;i <= n;i++)
+		for(int j = 1;j <= n;j++){
+			a[i][j] = -a[i][j];
+			if(i==j) a[i][j] ++;
+		}
+	for(int i = 1;i <= n;i++)
+		for(int j = 1;j <= n;j++)
+			printf("%d%c",a[i][j]," \n"[j==n]);
 	return 0;
 }
