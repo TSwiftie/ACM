@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: a.cpp
+	> File Name: b.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Mon 25 May 2020 10:09:37 AM CST
+	> Created Time: Mon 25 May 2020 10:30:39 AM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -27,14 +27,5 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 signed main(void){
-	int t;
-	for(scanf("%d",&t);t--;){
-		int a, b;
-		scanf("%d%d",&a,&b);
-		if(a < b) swap(a,b);
-		if(a==b) printf("%d\n",4*a*a);
-		else if(a >= 2*b) printf("%d\n",a*a);
-		else if(a < 2*b) printf("%d\n",4*b*b);
-	}
 	return 0;
 }

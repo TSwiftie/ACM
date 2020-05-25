@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: a.cpp
+	> File Name: h.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Mon 25 May 2020 10:09:37 AM CST
+	> Created Time: Mon 25 May 2020 11:10:58 AM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -26,15 +26,23 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+const int N = 105;
+ll t, n, m, a[N];
+bitset<60> b;
 signed main(void){
-	int t;
-	for(scanf("%d",&t);t--;){
-		int a, b;
-		scanf("%d%d",&a,&b);
-		if(a < b) swap(a,b);
-		if(a==b) printf("%d\n",4*a*a);
-		else if(a >= 2*b) printf("%d\n",a*a);
-		else if(a < 2*b) printf("%d\n",4*b*b);
+	IOS;
+	for(cin >> t;t--;){
+		cin >> n >> m;
+		ll k = (1LL<<m)-n,mid = (k-1)/2;
+		for(ll i = 0;i < n;++i)
+			cin >> b,a[i] = b.to_ullong();
+		sort(a,a+n);
+		for(ll i = 0;i < n;++i)
+			if(a[i] <= mid) ++mid;
+		b = mid;
+		for(ll i = m-1;i >= 0;--i)
+			cout << b[i];
+		cout << endl;
 	}
 	return 0;
 }
