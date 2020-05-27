@@ -4,22 +4,33 @@
 #include <string>
 #include <queue>
 #include <vector>
+
 using namespace std;
+
 const int dir[4][2] = {1,0,0,1,-1,0,0,-1};
 const int N = 1e3+10;
+
 struct Node;
 int g(const Node &);
 int h(const Node &);
 int f(const Node &);
+int id(int,int);
+pair<int,int> rid(int);
 bool cmp(const Node &,const Node &);
+bool judge(const Node &);
+void PrintPath(int,int);
+void A_star();
+
 char mp[N][N];
 int pre[N][N];
 bool vis[N][N];
 struct Node{
 	int x,y,step;
 };
+
 int n,m;
 Node st,ed;
+
 int g(const Node &tmp){
 	return tmp.step;
 }
@@ -82,8 +93,14 @@ signed main(void){
 	printf("请输入地图大小(N<=1000,M<=1000):");
 	scanf("%d%d",&n,&m);
 	printf("请输入地图(\".\"表示空地,\"#\"表示障碍):\n");
+	char *ch = "*#";
+	//for(int i = 1;i <= n;i++)
+		//scanf("%s",mp[i]+1);
 	for(int i = 1;i <= n;i++)
-		scanf("%s",mp[i]+1);
+		for(int j = 1;j <= m;j++)
+			mp[i][j] = ch[rand()%2];
+	for(int i = 1;i <= n;i++)
+		printf("%s\n",mp[i]+1);
 	printf("请指定起点:");
 	scanf("%d%d",&st.x,&st.y);
 	st.x,st.y;
