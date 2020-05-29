@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: c.cpp
+	> File Name: a.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Fri 29 May 2020 10:16:00 AM CST
+	> Created Time: Fri 29 May 2020 05:55:34 PM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -28,14 +28,12 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 signed main(void){
 	int t;
-	for(scanf("%d",&t);t--;){
-		ll c, h, ti;
-		scanf("%lld%lld%lld",&h,&c,&ti);
-		if(h==ti) printf("1\n");
-		else if(2*ti <= (h+c)) printf("2\n");
-		else{
-			ti -= (h+c)/2;
-		}
+	for(cin >> t;t--;){
+		int n, m;
+		cin >> n >> m;
+		if(n==2&&m==2) cout << "YES" << endl;
+		else if(n==1 || m==1) cout << "YES" << endl;
+		else cout << "NO" << endl;
 	}
 	return 0;
 }
