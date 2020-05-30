@@ -27,12 +27,14 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+char ch[10][100];
 signed main(void){
-	int a, b, c;
-	scanf("%d%d%d",&a,&b,&c);
-	if(a > b) swap(a,b);
-	if(a > c) swap(a,c);
-	if(b > c) swap(b,c);
-	printf("Max = %d,Min = %d\n",c,a);
+	int n;
+	scanf("%d",&n);
+	for(int i = 1;i <= n;++i)
+		scanf(" %[^\n]",ch[i]+1);
+	puts("");
+	for(int i = 1;i <= n;++i)
+		printf("%s\n",ch[i]+1);
 	return 0;
 }
