@@ -33,7 +33,6 @@ signed main(void){
 	scanf("%d",&n);
 	for(int i = 1;i <= n;++i)
 		scanf(" %[^\n]",ch[i]+1);
-	puts("");
 	for(int i = 1;i <= n;++i)
 		printf("%s\n",ch[i]+1);
 	return 0;
