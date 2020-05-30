@@ -28,12 +28,11 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 signed main(void){
-	int dis = 0,cnt = 0;
-	for(int n = 10000;;n >>= 1){
-		dis += 1.5*n;
-		cnt++;
-		if(n/2 < 5) break;
-	}
-	printf("%d %d\n",cnt,dis);
+	int a, b, c;
+	scanf("%d%d%d",&a,&b,&c);
+	if(a > b) swap(a,b);
+	if(a > c) swap(a,c);
+	if(b > c) swap(b,c);
+	printf("Max = %d,Min = %d\n",c,a);
 	return 0;
 }
