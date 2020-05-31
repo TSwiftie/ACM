@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: c.cpp
+	> File Name: f.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Sat 30 May 2020 01:14:48 PM CST
+	> Created Time: Sun 31 May 2020 10:26:11 AM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -27,8 +27,17 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 signed main(void){
-	double a, b, c;
-	cin >> a >> b >> c;
-	cout << char(97) << endl;
+	int n;
+	while(cin >> n){
+		if(n==1) cout << 2 << endl;
+		else{
+			for(int i = 1;i < n;++i) cout << 1 << " ";
+			cout << n+1 << endl;
+			if(n&1){
+				for(int i = 1;i <= n;++i) cout << 2 << " ";
+				cout << endl;
+			}
+		}
+	}
 	return 0;
 }
