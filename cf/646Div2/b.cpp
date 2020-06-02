@@ -32,17 +32,15 @@ signed main(void){
 	for(cin >> t;t--;){
 		string str;
 		cin >> str;
-		int zero = 0,one = 0;
-		for(int i = 0;i < SZ(str);++i){
-			if(str[i]=='0') ++zero;
-			else ++one;
-		}
+		int a = 0, b = 0, c = 0, d = 0;
+		for(int i = 0;i < SZ(str);++i) str[i]^48 ? a++:b++;
 		int ans = INF;
-		if(str[0]=='0') ans = min(ans,min(one,zero-1));
-		if(str[0]=='1') ans = min(ans,min(zero,one-1));
-		if(str[SZ(str)-1]=='0') ans = min(ans,min(one,zero-1));
-		if(str[SZ(str)-1]=='1') ans = min(ans,min(zero,one-1));
-		printf("%d\n",ans);
+		for(int i = 0;i < SZ(str);++i){
+			if(str[i]^48) c++,a--;
+			else d++,b--;
+			ans = min(ans,min((c+b),(a+d)));
+		}
+		cout << ans << endl;
 	}
 	return 0;
 }
