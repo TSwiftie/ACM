@@ -1,12 +1,13 @@
 /************************************************************
-	> File Name: c.cpp
+	> File Name: e.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Mon 08 Jun 2020 11:51:16 AM CST
+	> Created Time: Mon 08 Jun 2020 02:03:16 PM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
+#define int long long
 #define lowbit(x) (x&-x)
 #define SZ(x) ((int)x.size())
 #define all(x) x.begin(),x.end()
@@ -26,20 +27,23 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-const int N = 2e5+10;
-int a[N],b[N];
+const int N = 505;
+int a[N];
 signed main(void){
 	IOS;
 	int n,ans = 0;
 	cin >> n;
-	for(int i = 1,x;i <= n;++i)
-		cin >> x,a[x] = i;
-	for(int i = 1,x;i <= n;++i){
-		cin >> x;
-		++b[(i-a[x]+n)%n];
+	for(int i = 1;i <= n;++i)
+		cin >> a[i];
+	if(n==1) cout << a[1] << endl;
+	else if(n==2) cout << (a[1]|a[2]) << endl;
+	else{
+		int ans = 0;
+		for(int i = 1;i <= n;++i)
+			for(int j = i+1;j <= n;++j)
+				for(int k = j+1;k <= n;++k)
+					ans = max(ans,a[i]|a[j]|a[k]);
+		cout << ans << endl;
 	}
-	for(int i = 0;i < n;++i)
-		ans = max(ans,b[i]);
-	cout << ans << endl;
 	return 0;
 }
