@@ -27,7 +27,7 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 signed main(void){
-	for(int n = 1;n <= 100;++n){
+	for(int n = 1;n <= 1000;++n){
 		int tmp = n;
 		for(int i = 2;i*i <= tmp;++i){
 			if(tmp%i==0){
@@ -37,8 +37,8 @@ signed main(void){
 		}
 		int ot = n / tmp;
 		if(__gcd(ot+tmp,n)==1&&tmp!=n&&tmp!=1)
-			cout << n << ":" << "Yes\n";
-		else cout << n << ":" << "No\n";
+			cout << n << ":" << "Yes " << ot << " " << tmp << endl;
+		else cout << n << ":" << "No" << endl;
 	}
 	return 0;
 }
