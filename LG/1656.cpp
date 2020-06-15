@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: 5318.cpp
+	> File Name: 1656.cpp
 	> Author: TSwiftie
 	> Mail: 2224273204@qq.com 
-	> Created Time: Wed 20 May 2020 07:29:39 PM CST
+	> Created Time: Mon 15 Jun 2020 11:03:08 AM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -26,43 +26,48 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-const int N = 1e5+10;
-vi G[N];
+const int N = 201;
+const int M = 1e4+10;
 int n, m;
+int e[N][N];
+struct Edge{
+	int u,v;
+}edge[M];
 bool vis[N];
 void dfs(int u,int f){
 	vis[u] = true;
-	cout << u << " ";
-	for(int v : G[u]) if(v!=f&&!vis[v])
-		dfs(v,u);
-}
-void bfs(){
-	memset(vis,false,sizeof vis);
-	queue<int>q;
-	q.push(1);
-	vis[1] = true;
-	while(q.size()){
-		int u = q.front();
-		q.pop();
-		cout << u << " ";
-		for(int v : G[u])
-			if(!vis[v]){
-				vis[v] = true; 
-				q.push(v);
-			}
+	for(int i = 1;i <= n;++i){
+		if(u==i) continue;
+		if(e[u][i]&&!vis[i]&&i!=f)
+			dfs(i,u);
 	}
 }
 signed main(void){
-	int n, m;
 	scanf("%d%d",&n,&m);
-	for(int i = 1,u,v;i <= m;i++){
+	for(int i = 1,u,v;i <= m;++i){
 		scanf("%d%d",&u,&v);
-		G[u].push_back(v);
+		++e[u][v];
+		++e[v][u];
+		edge[i].u = u;
+		edge[i].v = v;
 	}
-	for(int i = 1;i <= n;++i)
-		sort(all(G[i]));
-	dfs(1,0);
-	cout << endl;
-	bfs();
+	vector<pii>ans;
+	for(int i = 1;i <= m;++i){
+		int u = edge[i].u,v = edge[i].v;
+		--e[u][v];
+		--e[v][u];
+		dfs(1,0);
+		for(int j = 1;j <= n;++j)
+			if(!vis[j]){
+				ans.push_back(make_pair(min(u,v),max(u,v)));
+				break;
+			}
+		memset(vis,false,sizeof vis);
+		++e[u][v];
+		++e[v][u];
+	}
+	sort(all(ans));
+	for(pii i : ans)
+		printf("%d %d\n",i.first,i.second);
 	return 0;
 }
