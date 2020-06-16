@@ -7,6 +7,7 @@
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
+#define int long long
 #define lowbit(x) (x&-x)
 #define SZ(x) ((int)x.size())
 #define all(x) x.begin(),x.end()
