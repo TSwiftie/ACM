@@ -27,5 +27,8 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 signed main(void){
+	int a;
+	cin >> a;
+	cout << a << endl;
 	return 0;
 }
