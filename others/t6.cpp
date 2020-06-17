@@ -2,7 +2,7 @@
 	> File Name: t6.cpp
 	> Author: TSwiftie
 	> Mail: tswiftie@foxmail.com 
-	> Created Time: Wed 17 Jun 2020 06:38:02 PM CST
+	> Created Time: Wed 17 Jun 2020 08:23:52 PM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -27,30 +27,18 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 1e5+10;
-inline int read(){
-	int x = 0,f = 1;
-	char ch = getchar();
-	for(;ch>'0'||ch<'9';ch = getchar()) if(ch=='-') f = -1;
-	for(;ch>='0'&&ch<='9';ch = getchar()) x = (x<<1)+(x<<3)+(ch^48);
-	return x*f;
-}
-struct Query{
-	int l,r,id;
-}s[N];
-int sum,cnt[1000006];
-int ans[N],a[N],belong[N];
-bool cmp(const Query &a,const Query &b){
-	if(belong[a.l]==belong[b.l]) return a.r < b.r;
-	else return belong[a.l] < belong[b.l];
-}
+int cnt[1000006],a[N],Idx;
 signed main(void){
 	int n, q;
 	scanf("%d%d",&n,&q);
 	for(int i = 1;i <= n;++i){
 		scanf("%d",a+i);
+		if(!cnt[a[i]]) ++Idx;
+		++cnt[a[i]];
 	}
-	for(int i = 1;i <= q;++i)
-		scanf("%d%d",&s[i].l,&s[i].r),s[i].id = i;
+	while(q--){
+		int l, r;
+		scanf("%d%d",&l,&r);
+	}
 	return 0;
 }
-//dp[i][0] = (dp[i-1][1]+dp[i-k][])
