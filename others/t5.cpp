@@ -28,22 +28,22 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int p = 1e9+7;
 const int N = 1e5+10;
-int dp[N][2];
+int dp[N][2],ans[N];
 signed main(void){
 	int q, k;
 	cin >> q >> k;
+	dp[0][0] = 1;
 	dp[1][0] = 1,dp[1][1] = 1==k;
-	for(int i = 1;i <= 1e5;++i){
-		dp[i+k][1] = (dp[i+k][1] + dp[i][0]) % p;
-		dp[i+1][0] = (dp[i+1][0] + dp[i][0]) % p;
-		dp[i+1][0] = (dp[i+1][0] + dp[i][1]) % p;
+	for(int i = 2;i <= 1e5;++i){
+		dp[i][0] = (dp[i-1][0] + dp[i-1][1]) % p;
+		if(i >= k) dp[i][1] = (dp[i-k][0]+dp[i-k][1])%p;
 	}
-	for(int i = 1;i <= 10;++i)
-		cout << dp[i][0] + dp[i][1] << endl;
+	for(int i = 1;i <= 1e5;++i)
+		ans[i] = (ans[i-1] + dp[i][0] + dp[i][1]) % p;
 	while(q--){
 		int l, r;
 		cin >> l >> r;
-		cout << ((dp[r][0]+dp[r][1]) % p - (dp[l-1][0]+dp[l-1][1])%p + p) % p << endl;
+		cout << (ans[r]-ans[l-1] + p) % p << endl;
 	}
 	return 0;
 }
