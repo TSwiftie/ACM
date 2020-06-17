@@ -1,13 +1,12 @@
 /************************************************************
-	> File Name: te.cpp
+	> File Name: t5.cpp
 	> Author: TSwiftie
-	> Mail: 2224273204@qq.com 
-	> Created Time: Tue 16 Jun 2020 01:30:05 PM CST
+	> Mail: tswiftie@foxmail.com 
+	> Created Time: Wed 17 Jun 2020 07:09:06 PM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
-#define int long long
 #define lowbit(x) (x&-x)
 #define SZ(x) ((int)x.size())
 #define all(x) x.begin(),x.end()
@@ -27,28 +26,24 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-const int N = 1e5;
 const int p = 1e9+7;
-int fac[N+10];
-int ksm(int a,int b){
-	int res = 1;
-	while(b){
-		if(b&1) res = res * a % p;
-		a = a * a % p;
-		b >>= 1;
-	}
-	return res;
-}
+const int N = 1e5+10;
+int dp[N][2];
 signed main(void){
-	fac[0] = fac[1] = 1;
-	for(int i = 2;i <= N;++i)
-		fac[i] = fac[i-1] * i % p;
-	int n;
-	while(cin >> n){
-		int ans;
-		if(n&1) ans = (n-1)/2*n%p;
-		else ans = n/2*(n-1)%p;
-		cout << fac[n] * ans % p << endl;
+	int q, k;
+	cin >> q >> k;
+	dp[1][0] = 1,dp[1][1] = 1==k;
+	for(int i = 1;i <= 1e5;++i){
+		dp[i+k][1] = (dp[i+k][1] + dp[i][0]) % p;
+		dp[i+1][0] = (dp[i+1][0] + dp[i][0]) % p;
+		dp[i+1][0] = (dp[i+1][0] + dp[i][1]) % p;
+	}
+	for(int i = 1;i <= 10;++i)
+		cout << dp[i][0] + dp[i][1] << endl;
+	while(q--){
+		int l, r;
+		cin >> l >> r;
+		cout << ((dp[r][0]+dp[r][1]) % p - (dp[l-1][0]+dp[l-1][1])%p + p) % p << endl;
 	}
 	return 0;
 }
