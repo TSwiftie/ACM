@@ -29,11 +29,11 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 char ch[10][100];
 signed main(void){
-	int n;
-	scanf("%d",&n);
-	for(int i = 1;i <= n;++i)
-		scanf(" %[^\n]",ch[i]+1);
-	for(int i = 1;i <= n;++i)
-		printf("%s\n",ch[i]+1);
+	for(int cas = 1;cas <= 100;++cas){
+		string In = to_string(cas) + ".in";
+		string Out = to_string(cas) + ".out";
+		freopen(In.c_str(),"r",stdin);
+		freopen(Out.c_str(),"w",stdout);
+	}
 	return 0;
 }
