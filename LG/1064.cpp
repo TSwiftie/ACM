@@ -5,6 +5,7 @@
 	> Created Time: Thu 07 May 2020 06:45:48 PM CST
 ************************************************************/
 
+#include <cstdio>
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
