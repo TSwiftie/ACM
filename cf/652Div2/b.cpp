@@ -27,12 +27,16 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+const int N = 1e5+10;
 int t,n;
-string str;
 signed main(void){
 	IOS;
 	for(cin >> t;t--;){
-		cin >> n >> str;
 	}
 	return 0;
 }
+
+//11001101
+//10101
+//1101
+//01
