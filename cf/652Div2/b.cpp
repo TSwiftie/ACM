@@ -29,9 +29,19 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 1e5+10;
 int t,n;
+string str;
 signed main(void){
 	IOS;
 	for(cin >> t;t--;){
+		cin >> n >> str;
+		int i,j;
+		for(i = 0;i < n&&str[i]=='0';++i)
+			cout << "0";
+		string ans = "";
+		for(j = n-1;j >= 0&&str[j]=='1';--j)
+			ans += "1";
+		if(j+1!=i) cout << "0";
+		cout << ans << endl;
 	}
 	return 0;
 }
