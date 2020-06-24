@@ -1,12 +1,13 @@
 /************************************************************
-	> File Name: c.cpp
+	> File Name: d.cpp
 	> Author: TSwiftie
 	> Mail: tswiftie@foxmail.com 
-	> Created Time: Wed 24 Jun 2020 09:52:10 AM CST
+	> Created Time: Wed 24 Jun 2020 10:49:10 AM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
+#define int long long
 #define lowbit(x) (x&-x)
 #define SZ(x) ((int)x.size())
 #define all(x) x.begin(),x.end()
@@ -27,7 +28,8 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-int t, n;
+const int N = 2e5+10;
+int t, n, k, a[N], w[N];
 signed main(void){
 	return 0;
 }
