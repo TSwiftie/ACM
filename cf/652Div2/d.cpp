@@ -28,11 +28,16 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+const int N = 2e6+10;
+const int p = 1e9+7;
+int a[N];
 signed main(void){
 	IOS;
+	for(int i = 3;i < N;++i) a[i] = (a[i-1] + a[i-2]*2 + (i%3==0)*4)%p;
 	int t,n;
 	for(cin >> t;t--;){
 		cin >> n;
+		cout << a[n] << endl;
 	}
 	return 0;
 }
