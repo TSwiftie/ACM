@@ -1,8 +1,8 @@
 /************************************************************
 	> File Name: 697.cpp
 	> Author: TSwiftie
-	> Mail: 2224273204@qq.com 
-	> Created Time: Sat 06 Jun 2020 10:43:03 PM CST
+	> Mail: tswiftie@foxmail.com 
+	> Created Time: Sat 27 Jun 2020 08:53:41 PM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -14,6 +14,7 @@
 #define rc (o<<1|1)
 #define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)
 using namespace std;
+//mt19937 rnd(time(0));
 typedef long long LL;
 typedef long long ll;
 typedef unsigned long long ull;
@@ -29,16 +30,16 @@ const double EPS = 1e-8;
 int dp[2020][2020];
 string a, b;
 signed main(void){
-	IOS;
-	while(cin >> a >> b){
-		for(int i = 0;i <= SZ(a);++i) dp[i][0] = i;
-		for(int i = 0;i <= SZ(b);++i) dp[0][i] = i;
-		for(int i = 1;i <= SZ(a);++i)
-			for(int j = 1;j <= SZ(b);++j){
-				dp[i][j] = min(dp[i-1][j],dp[i][j-1])+1;
-				dp[i][j] = min(dp[i][j],dp[i-1][j-1]+(a[i-1]!=b[j-1]));
-			}
-		cout << dp[SZ(a)][SZ(b)] << endl;
-	}
-	return 0;
+    IOS;
+    while(cin >> a >> b){
+        for(int i = 0;i <= SZ(a);++i) dp[i][0] = i;
+        for(int i = 0;i <= SZ(b);++i) dp[0][i] = i;
+        for(int i = 1;i <= SZ(a);++i)
+            for(int j = 1;j <= SZ(b);++j){
+                dp[i][j] = min(dp[i-1][j],dp[i][j-1])+1;
+                dp[i][j] = min(dp[i][j],dp[i-1][j-1]+(a[i-1]!=b[j-1]));
+            }
+        cout << dp[SZ(a)][SZ(b)] << endl;
+    }
+    return 0;
 }
