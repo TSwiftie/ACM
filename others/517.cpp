@@ -78,7 +78,7 @@ signed main(void){
         for(int j = last[x];;++j){
             if(check(j,t[x][y],z)){
                 for(int k = j;k < j+t[x][y];++k) used[z][k] = true;
-                last[x] = j+t[x][y];
+                last[x] = j + t[x][y];
                 break;
             }
         }
