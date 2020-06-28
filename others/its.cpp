@@ -37,7 +37,7 @@ signed main(void){
         sum += a[i];
         for(int j = 0;j <= sum;++j){
             dp[i][j] = dp[i-1][j] + b[i];
-            if(j >= a[i]) dp[i][j] = min(dp[i-1][j]+b[i],dp[i-1][j-a[i]]);
+            if(j >= a[i]) dp[i][j] = min(dp[i][j],dp[i-1][j-a[i]]);
         }
     }
     int ans = INF;
