@@ -2,7 +2,7 @@
 	> File Name: hosrspool.cpp
 	> Author: TSwiftie
 	> Mail: tswiftie@foxmail.com 
-	> Created Time: Sat 27 Jun 2020 09:35:32 AM CST
+	> Created Time: Sun 28 Jun 2020 11:01:11 AM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -14,7 +14,7 @@
 #define rc (o<<1|1)
 #define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)
 using namespace std;
-mt19937 rnd(time(0));
+//mt19937 rnd(time(0));
 typedef long long LL;
 typedef long long ll;
 typedef unsigned long long ull;
@@ -29,21 +29,22 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 7e5+10;
 int tab[300];
-char s[N],t[N];
+char str[N],text[N];
 int bFind(){
-    int ls = strlen(s),lt = strlen(t);
-    for(int i = 0;i < ls-1;++i) tab[s[i]-'A'] = ls-i-1;
-    int p = ls - 1;
-    while(p < lt){
+    int n = strlen(str),m = strlen(text);
+    for(int i = 0;i < 255;++i) tab[i] = n;
+    for(int i = 0;i < n-1;++i) tab[str[i]] = n-i-1;
+    int i = n-1;
+    while(i <= m-1){
         int k = 0;
-        while(s[ls-k-1]==t[p-k]&&k <= ls) ++k;
-        if(k==ls) return p-ls+1;
-        else p += tab[t[p]-'A'];
+        while(str[n-k-1]==text[i-k] && k < n) ++k;
+        if(k==n) return i-n+1;
+        else i += tab[text[i]];
     }
     return -1;
 }
 signed main(void){
-    scanf("%s%s",s,t);
+    scanf("%s%s",str,text);
     printf("%d\n",bFind());
     return 0;
 }
