@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: te2.cpp
+	> File Name: t2.cpp
 	> Author: TSwiftie
 	> Mail: tswiftie@foxmail.com 
-	> Created Time: Wed 17 Jun 2020 06:09:48 PM CST
+	> Created Time: Wed 01 Jul 2020 06:02:30 PM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -14,6 +14,7 @@
 #define rc (o<<1|1)
 #define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)
 using namespace std;
+//mt19937 rnd(time(0));
 typedef long long LL;
 typedef long long ll;
 typedef unsigned long long ull;
@@ -26,30 +27,15 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-const int N = 5e3+10;
-int Max = -1,Min = -1;
-int a[N];
-vector<int>ma,mi;
+const int N = 1e2+10;
+int a[N],n,ans;
 signed main(void){
-	int n;
-	scanf("%d",&n);
-	for(int i = 1;i <= n;++i){
-		scanf("%d",a+i);
-		if(Max==-1) Max = a[i];
-		if(Min==-1) Min = a[i];
-		if(a[i] > Max) Max = a[i];
-		if(a[i] < Min) Min = a[i];
-	}
-	for(int i = 1;i <= n;++i){
-		if(a[i]==Max) ma.push_back(i);
-		if(a[i]==Min) mi.push_back(i);
-	}
-	int ans = n;
-	for(int i : ma)
-		for(int j : mi){
-			int f = min(i,j),s = max(i,j);
-			ans = min(ans,s-f+1);
-		}
-	printf("%d\n",ans);
-	return 0;
+    scanf("%d",&n);
+    for(int i = 1;i <= n;++i) scanf("%d",a+i);
+    for(int i = 1;i <= n;++i)
+        for(int j = i+1;j <= n;++j)
+            for(int k = j+1;k <= n;++k)
+                if(a[i]+a[j]>a[k]&&a[i]+a[k]>a[j]&&a[j]+a[k]>a[i]) ++ans;
+    printf("%d\n",ans);
+    return 0;
 }
