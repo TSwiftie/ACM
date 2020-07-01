@@ -30,9 +30,7 @@ const double EPS = 1e-8;
 const int dir[4][2] = {1,0,0,1,-1,0,0,-1};
 int a[1003][1003],idx,n,m;
 int vis[1003][1003],block[100004];
-bool ischeck[100004];
 void dfs(int x,int y){
-    ++block[idx];
     vis[x][y] = idx;
     for(int i = 0;i < 4;++i){
         int dx = x + dir[i][0];
@@ -41,7 +39,6 @@ void dfs(int x,int y){
         dfs(dx,dy);
     }
 }
-int ans;
 signed main(void){
     scanf("%d%d",&n,&m);
     for(int i = 1;i <= n;++i)
@@ -49,33 +46,12 @@ signed main(void){
             scanf("%d",&a[i][j]);
     for(int i = 1;i <= n;++i)
         for(int j = 1;j <= m;++j){
-            if(!a[i][j]||vis[i][j]) continue;
+            if(vis[i][j]||!a[i][j]) continue;
             ++idx;
             dfs(i,j);
         }
     for(int i = 1;i <= n;++i)
         for(int j = 1;j <= m;++j)
-            a[i][j] = block[vis[i][j]];
-    for(int i = 1;i <= n;++i)
-        for(int j = 1;j <= m;++j){
-            if(a[i][j]) continue;
-            int sum = 0;
-            for(int k = 0;k < 4;++k){
-                int dx = i + dir[k][0];
-                int dy = j + dir[k][1];
-                if(dx<0||dx>n||dy<0||dy>m) continue;
-                if(ischeck[vis[dx][dy]]) continue;
-                ischeck[vis[dx][dy]] = true;
-                sum += a[dx][dy];
-            }
-            for(int k = 0;k < 4;++k){
-                int dx = i + dir[k][0];
-                int dy = j + dir[k][1];
-                if(dx<0||dx>n||dy<0||dy>m) continue;
-                ischeck[vis[dx][dy]] = false;
-            }
-            ans = max(ans,sum+1);
-        }
-    printf("%d\n",ans);
+            printf("%d%c",vis[i][j]," \n"[j==m]);
     return 0;
 }

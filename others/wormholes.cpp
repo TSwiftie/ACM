@@ -10,7 +10,8 @@ signed main(void){
 	scanf("%d",&t);
 	while(t--){
 		scanf("%d%d%d",&n,&m,&w);
-		int t1, t2, t3, mark = 0;
+		int t1, t2, t3;
+        bool mark = false;
 		memset(e,INF,sizeof(e));
 		for(int i = 1;i <= n;++i) e[i][i] = 0;
 		for(int i = 1;i <= m;++i){
@@ -22,7 +23,7 @@ signed main(void){
 			scanf("%d%d%d",&t1,&t2,&t3);
 			e[t1][t2] = -t3;
 		}		
-		for(int k = 1;k <= n;++k)
+		for(int k = 1;k <= n&&!mark;++k)
 			for(int i = 1;i <= n;++i){
 				for(int j = 1;j <= n;++j)
 					if(e[i][j]>e[i][k]+e[k][j])
