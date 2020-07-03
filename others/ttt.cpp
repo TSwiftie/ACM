@@ -1,10 +1,9 @@
 /************************************************************
 	> File Name: ttt.cpp
 	> Author: TSwiftie
-	> Mail: 2224273204@qq.com 
-	> Created Time: Sun 10 May 2020 08:16:32 PM CST
+	> Mail: tswiftie@foxmail.com 
+	> Created Time: Fri 03 Jul 2020 07:43:44 PM CST
 ************************************************************/
-
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
@@ -15,7 +14,9 @@
 #define rc (o<<1|1)
 #define IOS ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)
 using namespace std;
+//mt19937 rnd(time(0));
 typedef long long LL;
+typedef long long ll;
 typedef unsigned long long ull;
 typedef vector<int> vi;
 typedef vector<LL> vll;
@@ -26,18 +27,22 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+struct node{
+    int id,sco,pot;
+    string name;
+}s[1003];
+bool cmp(node a,node b){
+    return a.sco > b.sco;
+}
 signed main(void){
-	string s, t;
-	cin >> s >> t;
-	bool mark = false;
-	for(int i = 0;i < 26;i++){
-		char c = i+'a';
-		if(s+c==t){
-			cout << "Yes" << endl;
-			mark = true;
-			break;
-		}
-	}
-	if(!mark) cout << "No" << endl;
-	return 0;
+    int n;
+    cin >> n;
+    for(int i = 1;i <= n;++i)
+        cin >> s[i].id >> s[i].name >> s[i].sco >> s[i].pot;
+    stable_sort(s+1,s+1+n,cmp);
+    int a, b;
+    cin >> a >> b;
+    for(int i = a;i <= b;++i)
+        cout << s[i].id << " " << s[i].name << " " << s[i].sco << " " << s[i].pot << endl;
+    return 0;
 }
