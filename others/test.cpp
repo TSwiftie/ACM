@@ -1,10 +1,9 @@
 /************************************************************
-	> File Name: edit.cpp
+	> File Name: test.cpp
 	> Author: TSwiftie
 	> Mail: tswiftie@foxmail.com 
-	> Created Time: Sun 28 Jun 2020 09:57:19 AM CST
+	> Created Time: mar 07 jul 2020 14:39:22
 ************************************************************/
-#include <cstdio>
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
@@ -28,20 +27,12 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-const int N = 2020;
-string a,b;
-int dp[N][N];
 signed main(void){
     IOS;
-    while(cin >> a >> b){
-        for(int i = 0;i <= SZ(a);++i) dp[i][0] = i;
-        for(int i = 0;i <= SZ(b);++i) dp[0][i] = i;
-        for(int i = 1;i <= SZ(a);++i)
-            for(int j = 1;j <= SZ(b);++j){
-                dp[i][j] = min(dp[i-1][j],dp[i][j-1])+1;
-                dp[i][j] = min(dp[i][j],dp[i-1][j-1]+(a[i-1]!=b[j-1]));
-            }
-        cout << dp[SZ(a)][SZ(b)] << endl;
+    int x, k, n;
+    cin >> x >> k >> n;
+    for(int i = 1;i <= n;++i){
+        cout << x%(k*i) << endl;
     }
     return 0;
 }

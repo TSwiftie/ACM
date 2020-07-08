@@ -1,10 +1,9 @@
 /************************************************************
-	> File Name: edit.cpp
+	> File Name: b.cpp
 	> Author: TSwiftie
 	> Mail: tswiftie@foxmail.com 
-	> Created Time: Sun 28 Jun 2020 09:57:19 AM CST
+	> Created Time: mié 08 jul 2020 08:45:48
 ************************************************************/
-#include <cstdio>
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
@@ -28,20 +27,27 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-const int N = 2020;
-string a,b;
-int dp[N][N];
+const int N = 305;
+const int dir[4][2] = {1,0,0,1,-1,0,0,-1};
+int a[N][N],n,m;
 signed main(void){
-    IOS;
-    while(cin >> a >> b){
-        for(int i = 0;i <= SZ(a);++i) dp[i][0] = i;
-        for(int i = 0;i <= SZ(b);++i) dp[0][i] = i;
-        for(int i = 1;i <= SZ(a);++i)
-            for(int j = 1;j <= SZ(b);++j){
-                dp[i][j] = min(dp[i-1][j],dp[i][j-1])+1;
-                dp[i][j] = min(dp[i][j],dp[i-1][j-1]+(a[i-1]!=b[j-1]));
+    int t;
+    for(scanf("%d",&t);t--;){
+        scanf("%d%d",&n,&m);
+        for(int i = 1;i <= n;++i)
+            for(int j = 1;j <= m;++j)
+                scanf("%d",&a[i][j]);
+        for(int i = 1;i <= n;++i){
+            for(int j = 1;j <= m;++j){
+                int cnt = 0;
+                for(int k = 0;k < 4;++k){
+                    int dx = i + dir[k][0];
+                    int dy = j + dir[k][1];
+                    if(dx<=0||dx>n||dy<=0||dy>=m) continue;
+                    cnt += (a[dx][dy] > 0);
+                }
             }
-        cout << dp[SZ(a)][SZ(b)] << endl;
+        }
     }
     return 0;
 }
