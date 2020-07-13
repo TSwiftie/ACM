@@ -1,13 +1,12 @@
 /************************************************************
-	> File Name: b.cpp
+	> File Name: c.cpp
 	> Author: TSwiftie
 	> Mail: tswiftie@foxmail.com 
-	> Created Time: 2020年07月13日 星期一 12时01分02秒
+	> Created Time: 2020年07月13日 星期一 14时48分25秒
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
-#define int long long
 #define lowbit(x) (x&-x)
 #define SZ(x) ((int)x.size())
 #define all(x) x.begin(),x.end()
@@ -28,17 +27,27 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+const int N = 2e5+10;
+int a[N],b[N],cnt;
 signed main(void){
-    IOS;
-    int t, n;
-    for(cin >> t;t--;){
-        cin >> n;
-        int a = n;
-        for(int i = 2;i*i <= n;++i) if(n%i==0){
-            a = i;
-            break;
+    int t,n;
+    for(scanf("%d",&t);t--;){
+        scanf("%d",&n);
+        cnt = 0;
+        b[0] = -1;
+        for(int i = 1;i <= n;++i){
+            scanf("%d",a+i);
+            a[i] = a[i]==i;
         }
-        cout << n/a << " " << n-n/a << endl;
+        for(int i = 1;i <= n;++i){
+            if(a[i]!=b[cnt]){
+                ++cnt;
+                b[cnt] = a[i];
+            }
+        }
+        int ans = 0;
+        for(int i = 1;i <= cnt;++i) ans += !b[i];
+        printf("%d\n",ans>2?2:ans);
     }
     return 0;
 }
