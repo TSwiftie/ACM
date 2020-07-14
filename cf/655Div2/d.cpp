@@ -27,6 +27,20 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+const int N = 2e5+10;
+int n, a[N];
 signed main(void){
+    scanf("%d",&n);
+    for(int i = 0;i < n;++i) scanf("%d",a+i);
+    ll ans = 0,cnt = 0;
+    for(int i = 0;i < n;i += 2) cnt += a[i];
+    int i = n-1;
+    for(int cntt = 0;cntt < n;++cntt){
+        ans = max(ans,cnt);
+        cnt += a[(i+2)%n];
+        cnt -= a[(i+1)%n];
+        i = (i+2)%n;
+    }
+    printf("%lld\n",ans);
     return 0;
 }
