@@ -36,7 +36,7 @@ signed main(void){
         for(int i = 1;i <= n;++i) scanf("%d",a+i);
         vi ans;
         for(int i = 1;i <= n;++i){
-            for(int j = 1;j < n;++j){
+            for(int j = 1;j < n-1;++j){
                 if(a[j] > a[j+1]){
                     swap(a[j],a[j+2]);
                     swap(a[j],a[j+1]);
