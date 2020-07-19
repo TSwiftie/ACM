@@ -1,8 +1,8 @@
 /************************************************************
-	> File Name: a.cpp
+	> File Name: c.cpp
 	> Author: TSwiftie
 	> Mail: tswiftie@foxmail.com 
-	> Created Time: Sat 18 Jul 2020 05:46:12 PM CST
+	> Created Time: Sun 19 Jul 2020 11:02:10 AM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -27,20 +27,14 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+const int N = 2e5+10;
+int a[N];
 signed main(void){
-    int t;
+    int t, n;
     for(scanf("%d",&t);t--;){
-        ll x, y, z;
-        scanf("%lld%lld%lld",&x,&y,&z);
-        if(x!=y&&x!=z&&y!=z) printf("NO\n");
-        else if(x==y&&x<z) printf("NO\n");
-        else if(x==z&&z<y) printf("NO\n");
-        else if(y==z&&z<x) printf("NO\n");
-        else{
-            printf("YES\n");
-            if(x==y) printf("%lld %lld %lld\n",x,z,z);
-            else if(x==z) printf("%lld %lld %lld\n",y,x,y);
-            else if(y==z) printf("%lld %lld %lld\n",x,x,y);
+        scanf("%d",&n);
+        for(int i = 1;i <= n;++i){
+            scanf("%d",a+i);
         }
     }
     return 0;
