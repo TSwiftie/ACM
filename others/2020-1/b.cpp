@@ -46,14 +46,21 @@ signed main(void){
         int x;
         scanf("%d",&x);
         double ans = 0;
-        for(int a = 0;a <= 100;++a){
+        for(int a = 60;a <= min(100,x);++a)
+        {
             double tmp = 0;
             tmp += judge(a);
-            for(int b = 0;b <= min(x-a,100);++b){
+            ans = max(ans,tmp);
+            for(int b = 60;b <= min(x-a,100);++b)
+            {
                 tmp += judge(b);
-                for(int c = 0;c <= min(x-a-b,100);++c){
+                ans = max(ans,tmp);
+                for(int c = 60;c <= min(x-a-b,100);++c)
+                {
                     tmp += judge(c);
-                    for(int d = 0;d <= min(x-a-b-c,100);++d){
+                    ans = max(ans,tmp);
+                    for(int d = 60;d <= min(x-a-b-c,100);++d)
+                    {
                         tmp += judge(d);
                         ans = max(ans,tmp);
                         tmp -= judge(d);
