@@ -27,16 +27,16 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+int dp[1010][1010];
 signed main(void){
     int t;
+    for(int i = 1;i <= 1000;++i)
+        for(int j = 1;j <= 1000;++j)
+            dp[i][j] = max(dp[i-1][j],dp[i][j-1]) + (__gcd(i,j)==1);
     for(scanf("%d",&t);t--;){
         int a, b;
         scanf("%d%d",&a,&b);
-        int cnt = 0,ans = a + b;
-        if(a > b) swap(a,b);
-        for(int i = 1;i*i <= b;++i){
-        }
-        printf("%d\n",cnt);
+        printf("%d\n",dp[a][b]);
     }
     return 0;
 }
