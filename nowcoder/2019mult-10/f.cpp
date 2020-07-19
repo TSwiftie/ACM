@@ -69,8 +69,8 @@ signed main(void){
     for(int i = 1;i <= 1e5;++i){
         int res = 0;
         for(int j = 0;j < 3;++j){
-            if(i*j+m < N) res += mp_x[i+j*m].size();
-            for(int k = 0;i*j+m < N && k < mp_x[i+j*m].size();++k){
+            if(i+j*m < N) res += mp_x[i+j*m].size();
+            for(int k = 0;i+j*m < N && k < mp_x[i+j*m].size();++k){
                 int now = mp_x[i+j*m][k];
                 for(int p = 0;p < 3;++p)
                     if(now-p*m > 0)
