@@ -32,7 +32,7 @@ int f[N],sz[N];
 ull n,m;
 ull C[N][5];
 int find(int x){
-    return x==f[x]?x:f[x]==find(f[x]);
+    return x==f[x]?x:f[x]=find(f[x]);
 }
 void init(){
     for(int i = 1;i <= n;++i) f[i] = i,sz[i] = 1;
@@ -48,22 +48,21 @@ void init(){
 signed main(void){
     scanf("%llu%llu",&n,&m);
     init();
-    ull sum = n*(n-1)/2*(n-2)/3*(n-3)/4,scc = n;
+    ull sum = n*(n-1)/2*(n-2)/3*(n-3)/4,k = 0;
     while(m--){
         printf("%llu\n",sum);
         int u, v;
         scanf("%d%d",&u,&v);
         int x = find(u),y = find(v);
         if(x!=y){
-            f[y] = x;
-            --scc;
-            sum /= sz[x];
-            sum /= sz[y];
-            sum /= scc;
-            sum *= (sz[x]+sz[y]);
-            sum *= (scc-4);
-            sz[y] = 0;
+            ll rem = n - sz[x] - sz[y];
+            k -= C[sz[x]][2];
+            k -= C[sz[y]][2];
+            ll res = C[rem][2] - k;
+            sum -= 1ll*res*sz[x]*sz[y];
             sz[x] += sz[y];
+            f[y] = x;
+            k += C[sz[x]][2];
         }
     }
     printf("%llu\n",sum);
