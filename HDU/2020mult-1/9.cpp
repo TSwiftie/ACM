@@ -31,14 +31,14 @@ const int N = 5e4+10;
 struct node{
     int p,a;
     bool operator < (const node &x) const{
-        if(p!=x.p) return p < x.p;
-        return a < x.a;
+        if(p!=x.p) return p > x.p;
+        return a > x.a;
     }
 }s[N];
 map<node,int>mp;
 int sta[N];
 bool judge(node x,node y,node z){
-    return (x.p-y.p) * (z.a-x.a) <= (x.p-z.p) * (y.a-x.a);
+    return (x.p-y.p) * (z.a-x.a) >= (x.p-z.p) * (y.a-x.a);
 }
 signed main(void){
     int t,n;
@@ -51,13 +51,13 @@ signed main(void){
         int top = 0;
         sort(s+1,s+1+n);
         for(int i = 1;i <= n;++i){
-            while((top > 0 && s[sta[top]].a <= s[i].a)||(top >= 2 && judge(s[sta[top-1]],s[sta[top]],s[i]))) --top;
+            if(top>=1 && s[i].a <= s[sta[top]].a) continue;
+            while(top>=2 && judge(s[sta[top-1]],s[sta[top]],s[i])) --top;
             sta[++top] = i;
         }
         int ans = top;
-        for(int i = 1;i <= top;++i){
+        for(int i = 1;i <= top;++i)
             if(mp[s[sta[i]]] > 1) --ans;
-        }
         printf("%lld\n",ans);
         mp.clear();
     }
