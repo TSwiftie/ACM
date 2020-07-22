@@ -31,8 +31,8 @@ const int N = 5e4+10;
 struct node{
     int p,a;
     bool operator < (const node &x) const{
-        if(a!=x.a) return a < x.a;
-        return p < x.p;
+        if(p!=x.p) return p > x.p;
+        return a > x.a;
     }
 }s[N];
 map<node,int>mp;
@@ -51,13 +51,13 @@ signed main(void){
         int top = 0;
         sort(s+1,s+1+n);
         for(int i = 1;i <= n;++i){
-            while((top > 0 && s[sta[top]].p <= s[i].p)||(top >= 2 && judge(s[sta[top-1]],s[sta[top]],s[i]))) --top;
+            if(top>=1 && s[i].a <= s[sta[top]].a) continue;
+            while(top>=2 && judge(s[sta[top-1]],s[sta[top]],s[i])) --top;
             sta[++top] = i;
         }
         int ans = top;
-        for(int i = 1;i <= top;++i){
+        for(int i = 1;i <= top;++i)
             if(mp[s[sta[i]]] > 1) --ans;
-        }
         printf("%lld\n",ans);
         mp.clear();
     }
