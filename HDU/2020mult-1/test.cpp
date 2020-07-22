@@ -27,17 +27,9 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-ll d = 383008016,p = 1e9+9;
-ll ksm(ll a,ll b,ll p){
-    ll res = 1;
-    while(b){
-        if(b&1) res = res * a % p;
-        a = a * a % p;
-        b >>= 1;
-    }
-    return res;
-}
 signed main(void){
-    cout << ksm(d,p-2,p) << endl;
+    for(int i = 0;i < 100;++i)
+        if(~i&1) printf("%d = even\n",i);
+        else printf("%d = odd\n",i);
     return 0;
 }

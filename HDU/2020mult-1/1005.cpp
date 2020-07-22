@@ -32,6 +32,7 @@ const int N = 1e5+10;
 const ll a = 691504013;
 const ll b = 308495997;
 const ll d = 276601605;
+const ll pmod = 1e9+8;
 ll fac[N],inv[N],facA[N],facB[N];
 inline ll read(){
     ll x = 0,f = 1;
@@ -64,18 +65,21 @@ signed main(void){
         facB[i] = facB[i-1] * b % p;
     }
     for(int i = 1;i < N;++i) inv[i] = inv[i] * inv[i-1] % p;
-    for(T = read();T--;){
-        ll n, c, k;
-        n = read();c = read();k = read();
+    for(scanf("%d",&T);T--;){
+        ll n, c, k, nn, cc;
+        scanf("%lld%lld%lld",&n,&c,&k);
         ll res = ksm(d,k);
         ll tmp = 0;
+        if(n < pmod) nn = n;
+        else nn = n % pmod + pmod;
+        if(c < pmod) cc = c;
+        else cc = c % pmod + pmod;
         for(int i = 0;i <= k;++i){
-            ll tt = ksm(facA[i],c) * ksm(facB[k-i],c) % p;
-            ll fn = (ksm(tt,n+1)-1+p)%p;
-            ll fm = ksm((tt-1+p)%p,p-2);
-            tt = fn * fm % p * C(k,i) % p;
-            if((k-i)&1) tmp = (tmp - tt + p) % p;
-            else tmp = (tmp + tt) % p;
+            ll tt = ksm(facA[k-i]*facB[i]%p,cc);
+            ll rem = tt==1 ? n%p : tt*(ksm(tt,nn)-1+p)%p*ksm(tt-1,p-2)%p;
+            tt = rem * C(k,i) % p;
+            if(~i&1) tmp = (tmp + tt) % p;
+            else tmp = (tmp - tt + p) % p;
         }
         printf("%lld\n",res*tmp%p);
     }
