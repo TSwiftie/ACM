@@ -2,7 +2,7 @@
 	> File Name: 1001.cpp
 	> Author: TSwiftie
 	> Mail: tswiftie@foxmail.com 
-	> Created Time: Thu 23 Jul 2020 01:34:42 PM CST
+	> Created Time: Thu 23 Jul 2020 08:28:46 PM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -29,33 +29,33 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 1e5+10;
 vi G[N];
-int b[N],f[N],idx[N],ans;
+int n, m, b[N], f[N];
 bool vis[N],del[N];
 int find(int x){
-    return f[x]==x?x:f[x]=find(f[x]);
-}
-bool cmp(int x,int y){
-    return b[x] > b[y];
-}
-void add_edge(int u,int v){
-    G[u].push_back(v);
-    G[v].push_back(u);
+    return x==f[x] ? x : f[x] = find(f[x]);
 }
 void dfs(int u,int f,vi &blo){
     vis[u] = true;
     blo.push_back(u);
-    for(int v : G[u]) if(v!=f && !vis[v])
+    for(int v : G[u]) if(v!=f)
         dfs(v,u,blo);
 }
 signed main(void){
-    int t;
-    for(scanf("%d",&t);t--;){
-        int n, m;
+    int T;
+    auto cmp = [](int x,int y){ return b[x] > b[y]; };
+    for(scanf("%d",&T);T--;){
         scanf("%d%d",&n,&m);
-        for(int i = 1;i <= n;++i) scanf("%d",b+i),f[i] = i,idx[i] = i;
+        for(int i = 1;i <= n;++i){
+            scanf("%d",b+i);
+            G[i].clear();
+            vis[i] = false;
+            f[i] = i;
+            del[i] = false;
+        }
         for(int i = 1,u,v;i <= m;++i){
             scanf("%d%d",&u,&v);
-            add_edge(u,v);
+            G[u].push_back(v);
+            G[v].push_back(u);
         }
         for(int i = 1;i <= n;++i){
             if(!vis[i]){
@@ -65,21 +65,10 @@ signed main(void){
                 for(int u : blo){
                     del[u] = true;
                     for(int v : G[u]){
-                        int fu = find(u),fv = find(v);
-                        if(del[v]&&fu!=fv){
-                            f[fu] = fv;
-                            ans += b[idx[fv]] - b[u];
-                        }
                     }
-                    idx[find(u)] = u;
                 }
-                ans += b[blo.back()];
             }
         }
-        printf("%d\n",ans);
-        memset(vis,false,sizeof vis);
-        memset(del,false,sizeof del);
-        for(int i = 1;i <= n;++i) G[i].clear();
     }
     return 0;
 }
