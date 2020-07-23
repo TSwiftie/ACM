@@ -42,8 +42,9 @@ signed main(void){
             if(abs(a[j] - b[n-1-i])!=((i+1)&1)) ans.push_back(1);
             ans.push_back(n-i);
         }
-        printf("\n%d\n",SZ(ans));
+        printf("%d ",SZ(ans));
         for(int i : ans) printf("%d ",i);
+        printf("\n");
     }
     return 0;
 }
