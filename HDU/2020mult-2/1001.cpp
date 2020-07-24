@@ -28,55 +28,40 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 1e5+10;
+int T, n, m, f[N], b[N], q[N], fa[N];
 vi G[N];
-int n, m, b[N], f[N], siz[N];
-bool vis[N],add[N];
-ll ans;
-int find(int x){
-    return x==f[x] ? x : f[x] = find(f[x]);
-}
-void dfs(int u,int f,vi &blo){
-    vis[u] = true;
-    blo.push_back(u);
-    for(int v : G[u]) if(v!=f)
-        dfs(v,u,blo);
-}
+bool add[N];
+bool cmp(int x,int y){ return b[x] > b[y]; }
+int find(int x){ return f[x]==x ? x : f[x] = find(f[x]); }
 signed main(void){
-    int T;
-    auto cmp = [](int x,int y){ return b[x] > b[y]; };
     for(scanf("%d",&T);T--;){
         scanf("%d%d",&n,&m);
         for(int i = 1;i <= n;++i){
             scanf("%d",b+i);
             G[i].clear();
-            vis[i] = false;
-            f[i] = i;
+            f[i] = q[i] = i;
             add[i] = false;
-            siz[i] = 1;
+            fa[i] = 0;
         }
         for(int i = 1,u,v;i <= m;++i){
             scanf("%d%d",&u,&v);
             G[u].push_back(v);
             G[v].push_back(u);
         }
+        sort(q+1,q+1+n,cmp);
         for(int i = 1;i <= n;++i){
-            if(!vis[i]){
-                vi blo;
-                dfs(i,0,blo);
-                sort(all(blo),cmp);
-                for(int u : blo){
-                    add[u] = true;
-                    for(int v : G[u]){
-                        if(!add[v]) continue;
-                        int fu = find(u),fv = find(v);
-                        if(fu!=fv){
-                            f[fu] = fv;
-                            siz[fv] += siz[fu];
-                        }
-                    }
-                }
+            int u = q[i];
+            add[u] = true;
+            for(int v : G[u]){
+                if(!add[v]) continue;
+                v = find(v);
+                if(v==u) continue;
+                fa[v] = f[v] = u;
             }
         }
+        ll ans = 0;
+        for(int i = 1;i <= n;++i) ans += b[i] - b[fa[i]];
+        printf("%lld\n",ans);
     }
     return 0;
 }
