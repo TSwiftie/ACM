@@ -29,8 +29,9 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 1e5+10;
 vi G[N];
-int n, m, b[N], f[N];
-bool vis[N],del[N];
+int n, m, b[N], f[N], siz[N];
+bool vis[N],add[N];
+ll ans;
 int find(int x){
     return x==f[x] ? x : f[x] = find(f[x]);
 }
@@ -50,7 +51,8 @@ signed main(void){
             G[i].clear();
             vis[i] = false;
             f[i] = i;
-            del[i] = false;
+            add[i] = false;
+            siz[i] = 1;
         }
         for(int i = 1,u,v;i <= m;++i){
             scanf("%d%d",&u,&v);
@@ -63,8 +65,14 @@ signed main(void){
                 dfs(i,0,blo);
                 sort(all(blo),cmp);
                 for(int u : blo){
-                    del[u] = true;
+                    add[u] = true;
                     for(int v : G[u]){
+                        if(!add[v]) continue;
+                        int fu = find(u),fv = find(v);
+                        if(fu!=fv){
+                            f[fu] = fv;
+                            siz[fv] += siz[fu];
+                        }
                     }
                 }
             }
