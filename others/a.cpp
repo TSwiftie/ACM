@@ -34,6 +34,7 @@ signed main(void){
     for(int i = 1;i <= n;++i){
         Max = Max * 10 + 9;
         Min = Min * 10;
+        Max = max(Max,Min);
     }
     Min /= 10;
     for(int i = Min;i <= Max;++i){
