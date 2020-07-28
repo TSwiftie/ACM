@@ -36,12 +36,12 @@ signed main(void){
         for(int i = 1;i <= n;++i) scanf("%d",a+i),a[i] %= p,sum[i] = sum[i-1] + a[i];
         memset(last,-1,sizeof last);
         last[0] = 0;
-        int pos = 0;
+        int endPos = 0;
         for(int i = 1;i <= n;++i){
             int tmp = last[sum[i]%p];
-            if(tmp >= pos){
+            if(tmp >= endPos){
                 ++ans;
-                pos = i;
+                endPos = i;
             }
             last[sum[i]%p] = i;
         }
