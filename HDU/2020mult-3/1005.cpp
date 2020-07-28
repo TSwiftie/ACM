@@ -29,7 +29,8 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 1e5+10;
 const int p = 1e9+7;
-int f[N],siz[N][3];
+int f[N];
+ll siz[N][3];
 int find(int x){
     return x==f[x] ? x : f[x] = find(f[x]);
 }
