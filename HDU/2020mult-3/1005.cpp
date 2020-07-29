@@ -59,6 +59,7 @@ void solve(){
         siz[fu][1] += siz[fv][1];
         siz[fu][2] += siz[fv][2];
     }
+    memset(siz,0,sizeof siz);
 }
 signed main(void){
     int t;
