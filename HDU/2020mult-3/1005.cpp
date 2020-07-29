@@ -53,7 +53,7 @@ void solve(){
         ans -= siz[fu][2]*siz[fv][2]%p*(n-siz[fu][1]-siz[fv][1]-siz[fu][2]-siz[fv][2])%p;
         ans -= siz[fu][2]*siz[fv][1]%p*(tc-siz[fu][2]-siz[fv][2])%p;
         ans -= siz[fu][1]*siz[fv][2]%p*(tc-siz[fu][2]-siz[fv][2])%p;
-        ans = (ans + p) % p;
+        ans = (ans%p + p) % p;
         printf("%lld\n",ans);
         f[fv] = fu;
         siz[fu][1] += siz[fv][1];
