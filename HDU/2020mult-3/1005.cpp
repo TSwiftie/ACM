@@ -28,9 +28,9 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 1e5+10;
-const int p = 1e9+7;
+const ll p = 1e9+7;
 int f[N];
-ll siz[N][3];
+ll siz[N][3],ans;
 int find(int x){
     return x==f[x] ? x : f[x] = find(f[x]);
 }
@@ -40,13 +40,24 @@ void solve(){
     scanf("%d",&n);
     for(int i = 1,x;i <= n;++i){
         scanf("%d",&x);
+        f[i] = i;
         ++siz[i][x];
         tr += x==1;
         tc += x==2;
     }
+    ans = (tc*(tc-1)/2%p*tr%p+(tc*(tc-1)*(tc-2)/6%p)) % p;
+    printf("%lld\n",ans);
     for(int i = 1,u,v;i < n;++i){
         scanf("%d%d",&u,&v);
         int fu = find(u),fv = find(v);
+        ans -= siz[fu][2]*siz[fv][2]%p*(n-siz[fu][1]-siz[fv][1]-siz[fu][2]-siz[fv][2])%p;
+        ans -= siz[fu][2]*siz[fv][1]%p*(tc-siz[fu][2]-siz[fv][2])%p;
+        ans -= siz[fu][1]*siz[fv][2]%p*(tc-siz[fu][2]-siz[fv][2])%p;
+        ans = (ans + p) % p;
+        printf("%lld\n",ans);
+        f[fv] = fu;
+        siz[fu][1] += siz[fv][1];
+        siz[fu][2] += siz[fv][2];
     }
 }
 signed main(void){
