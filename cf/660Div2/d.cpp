@@ -2,7 +2,7 @@
 	> File Name: d.cpp
 	> Author: TSwiftie
 	> Mail: tswiftie@foxmail.com 
-	> Created Time: Sat 01 Aug 2020 01:29:32 PM CST
+	> Created Time: Sat 01 Aug 2020 04:57:34 PM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -29,16 +29,30 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 2e5+10;
-int n,a[N],b[N];
-vi G[N];
+vi G[N],c,d;
+ll a[N],ans;
+int b[N];
+void dfs(int u){
+    for(int v : G[u]){
+        dfs(v);
+        if(a[v] >= 0) a[u] += a[v];
+    }
+    if(a[u] >= 0) c.push_back(u);
+    else d.push_back(u);
+    ans += a[u];
+}
 signed main(void){
+    int n;
     scanf("%d",&n);
-    for(int i = 1;i <= n;++i) scanf("%d",a+i);
+    for(int i = 1;i <= n;++i) scanf("%lld",a+i);
     for(int i = 1;i <= n;++i){
         scanf("%d",b+i);
-        if(b[i]!=-1){
-            G[i].push_back(b[i]);
-        }
+        if(~b[i]) G[b[i]].push_back(i);
     }
+    for(int i = 1;i <= n;++i)
+        if(b[i]==-1) dfs(i);
+    printf("%lld\n",ans);
+    for(int &i : c) printf("%d ",i);
+    for(int i = SZ(d)-1;i >= 0;--i) printf("%d%c",d[i]," \n"[i==0]);
     return 0;
 }
