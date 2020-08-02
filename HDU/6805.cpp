@@ -38,14 +38,8 @@ int S, T, nv;
 ll dis[M];
 bool vis[M];
 void add_edge(int u,int v,int w){
-    edge[++tot].v = v;
-    edge[tot].w = w;
-    edge[tot].next = head[u];
-    head[u] = tot;
-    edge[++tot].v = u;
-    edge[tot].w = w;
-    edge[tot].next = head[v];
-    head[v] = tot;
+    edge[++tot].v = v;edge[tot].w = w;edge[tot].next = head[u];head[u] = tot;
+    edge[++tot].v = u;edge[tot].w = w;edge[tot].next = head[v];head[v] = tot;
 }
 priority_queue<pair<ll,int>>q;
 ll Dijkstra(){
