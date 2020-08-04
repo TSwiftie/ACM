@@ -2,7 +2,7 @@
 	> File Name: 1012.cpp
 	> Author: TSwiftie
 	> Mail: tswiftie@foxmail.com 
-	> Created Time: Tue 04 Aug 2020 12:07:46 PM CST
+	> Created Time: Tue 04 Aug 2020 04:49:31 PM CST
 ************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
@@ -28,31 +28,35 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-const int N = 15e6+10;
+const int N = 2e6+10;
 const int p = 998244353;
-int fac[N],inv[N];
-void solve(){
-    int n;
-    cin >> n;
-    if(n==1){ cout << 1 << endl; return ; }
-    for(int i = 1;i <= n/2;++i) cout << 0 << " ";
-    int ans = (1 - inv[n-1] % p + p)%p;
-    for(int i = n/2+1;i <= n;++i){
-        cout << ans;
-        if(i==n) cout << endl;
-        else cout << " ";
+int fac[N];
+int ksm(int a,int b){
+    int res = 1;
+    while(b){
+        if(b&1) res = res * a % p;
+        a = a * a % p;
+        b >>= 1;
     }
+    return res;
 }
 signed main(void){
-    IOS;
-    int T;
-    fac[0] = fac[1] = 1;
-    inv[0] = inv[1] = 1;
-    for(int i = 2;i < N;++i){
-        //fac[i] = fac[i-1] * i % p;
-        inv[i] = (p-p/i)*inv[p%i]%p;
+    fac[0] = 1;
+    for(int i = 1;i < N;++i) fac[i] = fac[i-1] * i % p;
+    int T, n;
+    for(cin >> T;T--;){
+        cin >> n;
+        if(n==1){ cout << 1 << endl; continue; }
+        for(int i = 0;i < n/2;++i) cout << "0 ";
+        int a = fac[n/2],di = ksm(2,n/2)*a%p;
+        di = ksm(di,p-2);
+        cout << (a*di%p);
+        for(int i = 1;i < n/2;++i){
+            a = a*(n/2+i)%p;
+            a = a * ksm(i*2,p-2)%p;
+            cout << " " << (a*di%p);
+        }
+        cout << " " << (a*di%p) << endl;
     }
-    for(int i = 2;i < N;i += 2) inv[i] = inv[i-2] * inv[i] % p;
-    for(cin >> T;T--;) solve();
     return 0;
 }
