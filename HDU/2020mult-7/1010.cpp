@@ -23,8 +23,8 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int dir[8][2] = {1,0,0,1,-1,0,0,-1,1,1,-1,-1,1,-1,-1,1};
-map<pii,bool>mp;int res = 0,lim;
-int check(int x,int y){ return x>=1&&y>=1&&__gcd(x,y)>1; }
+map<pii,bool>mp;int res,lim;
+bool check(int x,int y){ return x>=1&&y>=1&&__gcd(x,y)>1; }
 void dfs(int x,int y){
     ++lim;if(lim>500) return;
     mp[pii(x,y)] = true;
@@ -41,7 +41,7 @@ void dfs(int x,int y){
 void solve(){
     int x, y;
     scanf("%lld%lld",&x,&y);lim = 0;mp.clear();
-    int cnt = 1,res = 1;
+    int cnt = 1;res = 1;
     mp[pii(x,y)] = true;
     for(int i=0;i<8;++i){
         int dx = x+dir[i][0],dy = y+dir[i][1];lim = 0;
