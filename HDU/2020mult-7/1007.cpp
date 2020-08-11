@@ -1,13 +1,7 @@
-/************************************************************
-	> File Name: 1007.cpp
-	> Author: TSwiftie
-	> Mail: tswiftie@foxmail.com 
-	> Created Time: Tue 11 Aug 2020 01:36:58 PM CST
-************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
-//#define int long long
+#define int long long
 #define lowbit(x) (x&-x)
 #define SZ(x) ((int)x.size())
 #define all(x) x.begin(),x.end()
@@ -29,24 +23,32 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 2e3+10;
-int _,n;double x[N],y[N];bool vis[N];
-typedef pair<double,int>pdi;
-vector<pdi>e[N];
-inline double dis(int i,int j){ return sqrt((x[i]-x[j])*(x[i]-x[j])+(y[i]-y[j])*(y[i]-y[j])); }
-void dfs(int u,double last){
+int _,n,res;bool vis[N];
+struct node{ int x,y; }t[N];
+inline int dis(node a,node b){ return (a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y); }
+void calc(){
+    int res = 0;
+    for(int i=1;i<=n;++i){
+        vis[i]=false;
+        for(int j=i+1;j<=n;++j) res=max(res,dis(t[i],t[j]));
+    }
+    for(int i=1;i<=n;++i) for(int j=i+1;j<=n;++j)
+        if(dis(t[i],t[j])==res) vis[i]=true,vis[j]=true;
+    vector<node>v;
+    for(int i=1;i<=n;++i) if(!vis[i]) v.push_back(t[i]);
+    n = v.size();
+    for(int i=1;i<=n;++i) t[i]=v[i-1];
 }
 void solve(){
-    scanf("%d",&n);
-    for(int i=1;i<=n;++i) scanf("%lf%lf",x+i,y+i);
-    for(int i=1;i<n;++i){
-        for(int j=1;j<=n;++j) 
-            e[i].push_back(pdi(dis(i,j),j)),e[j].push_back(pdi(dis(i,j),i));
-        sort(all(e[i]),[](pdi a,pdi b){ return a.first < b.first; });
-    }
-    dfs(1,0);
-    memset(vis,false,sizeof vis);
+    scanf("%lld",&n);
+    for(int i=1;i<=n;++i) scanf("%lld%lld",&t[i].x,&t[i].y);
+    int xx=t[1].x,yy=t[1].y;
+    while(n>2) calc();
+    if(n!=1) { printf("YES\n");return; }
+    if(t[1].x==xx&&t[1].y==yy) printf("NO\n");
+    else printf("YES\n");
 }
 signed main(void){
-    for(scanf("%d",&_);_--;) solve();
+    for(scanf("%lld",&_);_--;) solve();
     return 0;
 }
