@@ -22,30 +22,19 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-const int N = 1e5+10;
-int n, a[N], last, buc[N];
-bool check(int x){
-    int Max = 0;
-    for(int i = 1;i <= n;++i){
-    }
-}
-void solve(){
-    scanf("%d",&n);
-    for(int i = 1;i <= n;++i){
-        scanf("%d",a+i);
-        ++buc[a[i]];
-    }
-    for(int i = 1;i <= n;++i)
-        if(buc[i]==1) ++last,buc[i];
-    int l = 0,r = n,ans = 0;
-    while(l <= r){
-        int mid = (l+r)>>1;
-        if(check(mid)){ ans = mid;l = mid+1; }
-        else r = mid-1;
-    }
-    printf("%d\n",ans);
-}
+const int N = 2e5+10;
+int i, k, n, t, a[N], Max;
 signed main(void){
-    int t;for(scanf("%d",&t);t--;) solve();
+    for(scanf("%d",&t);t--;){
+        scanf("%d",&n);Max = 0;
+        int cnt = 0;
+        for(int i = 0;i < n;++i){
+            scanf("%d",&k);
+            ++a[k];Max = max(Max,a[k]);
+        }
+        for(int i = 1;i <= n;++i) if(a[i]==Max) ++cnt;
+        printf("%d\n",(n-cnt)/(Max-1)-1);
+        memset(a,0,sizeof a);
+    }
     return 0;
 }
