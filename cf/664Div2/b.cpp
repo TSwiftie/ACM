@@ -30,46 +30,28 @@ signed main(void){
     bool mark = false;
     for(int i = Sx;i <= n;++i){
         if(!mark){
-            for(int j = 1;j < Sy;++j){
-                ans.push_back(pii(i,j));
-            }
+            for(int j = 1;j < Sy;++j) ans.push_back(pii(i,j));
             if(i!=Sx) ans.push_back(pii(i,Sy));
-            for(int j = Sy+1;j <= m;++j){
-                ans.push_back(pii(i,j));
-            }    
+            for(int j = Sy+1;j <= m;++j) ans.push_back(pii(i,j));
         }else{
-            for(int j = m;j > Sy;--j){
-                ans.push_back(pii(i,j));
-            }
+            for(int j = m;j > Sy;--j) ans.push_back(pii(i,j));
             if(i!=Sx) ans.push_back(pii(i,Sy));
-            for(int j = Sy-1;j >= 1;--j){
-                ans.push_back(pii(i,j));
-            }
+            for(int j = Sy-1;j >= 1;--j) ans.push_back(pii(i,j));
         }
         mark = !mark;
     }
     for(int i = 1;i < Sx;++i){
         if(!mark){
-            for(int j = 1;j < Sy;++j){
-                ans.push_back(pii(i,j));
-            }
+            for(int j = 1;j < Sy;++j) ans.push_back(pii(i,j));
             if(i!=Sx) ans.push_back(pii(i,Sy));
-            for(int j = Sy+1;j <= m;++j){
-                ans.push_back(pii(i,j));
-            }    
+            for(int j = Sy+1;j <= m;++j) ans.push_back(pii(i,j));
         }else{
-            for(int j = m;j > Sy;--j){
-                ans.push_back(pii(i,j));
-            }
+            for(int j = m;j > Sy;--j) ans.push_back(pii(i,j));
             if(i!=Sx) ans.push_back(pii(i,Sy));
-            for(int j = Sy-1;j >= 1;--j){
-                ans.push_back(pii(i,j));
-            }
+            for(int j = Sy-1;j >= 1;--j) ans.push_back(pii(i,j));
         }
         mark = !mark;
     }
-    for(pii i : ans){
-        printf("%d %d\n",i.first,i.second);
-    }
+    for(pii i : ans) printf("%d %d\n",i.first,i.second);
     return 0;
 }

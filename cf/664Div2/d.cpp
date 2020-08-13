@@ -29,12 +29,11 @@ void solve(void){
     for(int i = 1;i <= n;++i) cin >> a[i],cnt += (a[i] <= m);
     sort(a+1,a+1+n);
     for(int i = 1;i <= n;++i) sum[i] = sum[i-1] + a[i];
-    for(int i = 0;i <= n-cnt;++i){
+    for(int i = 0;i <= n-cnt;++i)
         if((i-1)*(d+1)<n){
             int x = min(cnt,n-(i-1)*(d+1)-1);
             ans = max(ans,sum[n]-sum[n-i]+sum[cnt]-sum[cnt-x]);
         }
-    }
     cout << ans << endl;
 }
 signed main(void){

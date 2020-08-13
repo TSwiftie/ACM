@@ -26,27 +26,17 @@ const int N = 205;
 int a[N],b[N],n,m;
 signed main(void){
     scanf("%d%d",&n,&m);
-    for(int i = 1,x;i <= n;++i){
-        scanf("%d",a+i);
-    }
-    for(int i = 1,x;i <= m;++i){
-        scanf("%d",b+i);
-    }
+    for(int i = 1;i <= n;++i) scanf("%d",a+i);
+    for(int i = 1;i <= m;++i) scanf("%d",b+i);
     for(int k = 0;k < 512;++k){
         int cnt = 0;
         for(int i = 1;i <= n;++i){
             for(int j = 1;j <= m;++j){
                 int tmp = a[i]&b[j];
-                if((tmp&k)==tmp){
-                    ++cnt;
-                    break;
-                }
+                if((tmp&k)==tmp){ ++cnt;break; }
             }
         }
-        if(cnt==n){
-            printf("%d\n",k);
-            return 0;
-        }
+        if(cnt==n){ printf("%d\n",k);return 0; }
     }
     return 0;
 }
