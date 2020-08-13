@@ -29,13 +29,15 @@ const double EPS = 1e-8;
 signed main(void){
 	int t;
 	for(scanf("%d",&t);t--;){
-		ll c, h, ti;
-		scanf("%lld%lld%lld",&h,&c,&ti);
-		if(h==ti) printf("1\n");
-		else if(2*ti <= (h+c)) printf("2\n");
-		else{
-			ti -= (h+c)/2;
-		}
+        ll c, h, ti;
+        scanf("%lld%lld%lld",&h,&c,&ti);
+        if(h==ti) printf("1\n");
+        else if(2*ti <= (h+c)) printf("2\n");
+        else{
+            int k = (ti-h)/(h+c-2*ti);
+            if(fabs(1.0*((h+c-2*ti)*k+h-ti)/(2*k+1)) > fabs(1.0*((h+c-2*ti)*(k+1)+h-ti)/(2*k+3))) ++k;
+            printf("%d\n",2*k+1);
+        }
 	}
 	return 0;
 }
