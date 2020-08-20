@@ -1,9 +1,3 @@
-/************************************************************
-	> File Name: 6833.cpp
-	> Author: TSwiftie
-	> Mail: tswiftie@foxmail.com 
-	> Created Time: Sun 09 Aug 2020 11:31:06 AM CST
-************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
