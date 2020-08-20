@@ -24,17 +24,8 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int p = 1e9+7;
 const int N = 2e5+10;
-int pri[N],mu[N],S1[N],S2[N],tot;
-int n, x, k;
-bool vis[N];
-inline int ksm(int a,int b,int res = 1){
-    while(b){
-        if(b&1) res = res * a % p;
-        a = a * a % p;
-        b >>= 1;
-    }
-    return res;
-}
+int pri[N],mu[N],S1[N],S2[N],tot,n, x, k;bool vis[N];
+inline int ksm(int a,int b,int res = 1){ while(b){ if(b&1) res = res * a % p;a = a * a % p;b >>= 1; } return res; }
 inline void init(){
     mu[1] = 1;
     for(int i = 2;i < N;++i){
