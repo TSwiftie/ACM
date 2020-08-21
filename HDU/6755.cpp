@@ -1,9 +1,3 @@
-/************************************************************
-	> File Name: 1005.cpp
-	> Author: TSwiftie
-	> Mail: tswiftie@foxmail.com 
-	> Created Time: Tue 21 Jul 2020 07:20:20 PM CST
-************************************************************/
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
