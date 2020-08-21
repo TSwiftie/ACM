@@ -34,19 +34,13 @@ struct SegTree{
         mx[o] = max(mx[lc],mx[rc]);
     }
     void build(int o,int L,int R,int *A){
-        if(L==R){
-            id[o] = mx[o] = A[L];
-            return ;
-        }
+        if(L==R){ id[o] = mx[o] = A[L];return; }
         int mid = (L+R)>>1;
         build(lc,L,mid,A);build(rc,mid+1,R,A);
         pushup(o);
     }
     void update(int o,int L,int R,int pos,int val){
-        if(L==R){
-            id[o] = mx[o] = val;
-            return ;
-        }
+        if(L==R){ id[o] = mx[o] = val; return ; }
         int mid = (L+R)>>1;
         if(pos <= mid) update(lc,L,mid,pos,val);
         else update(rc,mid+1,R,pos,val);
@@ -64,9 +58,7 @@ struct SegTree{
 pii A[N];
 int B[N];
 int n, m;
-bool cmp(pii a,pii b){
-    return a.second < b.second;
-}
+bool cmp(pii a,pii b){ return a.second < b.second; }
 signed main(void){
     int t;
     for(scanf("%d",&t);t--;){
