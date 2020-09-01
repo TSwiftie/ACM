@@ -1,7 +1,7 @@
 #pragma GCC optimize(2)
 #include <bits/stdc++.h>
 #include <ext/rope>
-//#define int long long
+#define int long long
 #define lowbit(x) (x&-x)
 #define SZ(x) ((int)x.size())
 #define all(x) x.begin(),x.end()
@@ -23,20 +23,18 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 3e3+10;
-int a[N],n,t,buc[N*N];
+int a[N],n,t,pre[N][N],suf[N][N];
 void solve(){
-    scanf("%d",&n);
-    for(int i = 1;i <= n;++i){ scanf("%d",a+i);--a[i]; }
+    scanf("%lld",&n);
+    for(int i = 1;i <= n;++i) { scanf("%lld",a+i);++pre[i][a[i]];++suf[i][a[i]]; }
+    for(int i = 1;i <= n;++i) for(int j = 1;j <= n;++j) pre[i][j] += pre[i-1][j];
+    for(int i = n;i >= 1;--i) for(int j = 1;j <= n;++j) suf[i][j] += suf[i+1][j];
     int ans = 0;
-    for(int j = n;j >= 1;--j){
-        int k = j+1;
-        for(int l = k+1;l <= n;++l) ++buc[a[k]*n+a[l]];
-        for(int i = 1;i < j;++i) ans += buc[a[i]*n+a[j]];
-    }
-    printf("%d\n",ans);
-    memset(buc,0,sizeof buc);
+    for(int j = 1;j <= n;++j) for(int k = j+1;k <= n;++k) ans += pre[j-1][a[k]]*suf[k+1][a[j]];
+    printf("%lld\n",ans);
+    memset(pre,0,sizeof pre);memset(suf,0,sizeof suf);
 }
 signed main(void){
-    for(scanf("%d",&t);t--;) solve();
+    for(scanf("%lld",&t);t--;) solve();
     return 0;
 }
