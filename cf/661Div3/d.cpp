@@ -23,8 +23,7 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 2e5+10;
-string s;int ans[N];
-vi p[2];
+string s;int ans[N];vi p[2];
 void solve(){
     int n,cnt = 0;cin >> n >> s;
     memset(ans,0,sizeof ans);
@@ -34,8 +33,7 @@ void solve(){
         p[s[i]-'0'].push_back(ans[i]);
     }
     cout << cnt << endl;
-    for(int i = 0;i < n;++i)
-        cout << ans[i] << ' ';
+    for(int i = 0;i < n;++i) cout << ans[i] << ' ';
     cout << endl;p[0].clear();p[1].clear();
 }
 signed main(void){
