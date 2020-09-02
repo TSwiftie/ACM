@@ -40,7 +40,6 @@ void solve(){
 }
 signed main(void){
 	int t;
-	for(scanf("%d",&t);t--;)
-		solve();
+	for(scanf("%d",&t);t--;) solve();
 	return 0;
 }
