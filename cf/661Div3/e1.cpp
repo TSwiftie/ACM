@@ -49,10 +49,7 @@ void solve(){
     dfs(1,0);
     sort(all(tmp));
     int ans = 0;
-    while(sum>S){
-        ++ans;
-        sum -= tmp.back();tmp.pop_back();
-    }
+    while(sum>S){ ++ans; sum -= tmp.back();tmp.pop_back(); }
     printf("%lld\n",ans);
     memset(sizf,0,sizeof sizf);tmp.clear();
     memset(head,0,sizeof head);tot = 0;sum = 0;
