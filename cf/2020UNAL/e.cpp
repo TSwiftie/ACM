@@ -32,11 +32,6 @@ signed main(void){
         cout << root << endl;
         cin >> tmp;
         if(tmp==0){ cout <<"! " << root << endl;return 0; }
-        if(tmp==2 && root!=1) {
-            cout << (root|1) << endl;
-            int tt;cin >> tt;
-            if(tt==0) { cout << "! " << root << endl; }
-        }
         if(tmp > dis) { root|=1;root<<=1;--dis; }
         else dis = tmp,root<<=1;
     }
