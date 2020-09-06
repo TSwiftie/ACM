@@ -31,18 +31,13 @@ const int N = 1e5+10;
 int a[N], n, k;
 bool check(int x){
     int cnt = 0;
-    for(int i = 1;i <= n;++i)
-        if(a[i] > x)
-            cnt += ceil(1.0*(a[i]-x)/(k-1));
+    for(int i = 1;i <= n;++i) if(a[i] > x) cnt += ceil(1.0*(a[i]-x)/(k-1));
     return cnt <= x;
 }
 signed main(void){
     scanf("%d%d",&n,&k);
     int l = 0,r = 0;
-    for(int i = 1;i <= n;++i){
-        scanf("%d",a+i);
-        r = max(r,a[i]);
-    }
+    for(int i = 1;i <= n;++i){ scanf("%d",a+i);r = max(r,a[i]); }
     while(l < r){
         int mid =(l+r)>>1;
         if(check(mid)) r = mid;
