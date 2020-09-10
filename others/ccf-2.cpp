@@ -23,20 +23,17 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 1e6+10;
-int a[N],b[N],all,n,m;
+map<int,int>mp;int a,b,n,ans = 0;
 signed main(void){
-    scanf("%lld%lld%lld",&all,&n,&m);
-    for(int i = 1,pos,x;i <= n;++i){
-        scanf("%lld%lld",&pos,&x);
-        a[pos] = x;
+    IOS;cin >> n >> a >> b;
+    for(int i = 1,pos,x;i <= a;++i){
+        cin >> pos >> x;
+        mp[pos] = x;
     }
-    for(int i = 1,pos,x;i <= m;++i){
-        scanf("%lld%lld",&pos,&x);
-        b[pos] = x;
+    for(int i = 1,pos,x;i <= b;++i){
+        cin >> pos >> x;
+        if(mp[pos]) ans += mp[pos]*x;
     }
-    int ans = 0;
-    for(int i = 1;i <= all;++i)
-        ans += a[i] * b[i];
-    printf("%lld\n",ans);
+    cout << ans << endl;
     return 0;
 }
