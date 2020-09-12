@@ -24,11 +24,11 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 5e3+10;
 struct Edge{ int v, w, next; }edge[N<<1];
-int head[N],tot;
+int head[N],tot,n;
 void init(){ memset(head,-1,sizeof head);tot = -1; }
 void add_edge(int u,int v,int w){ edge[++tot].v = v;edge[tot].w = w;edge[tot].next = head[u];head[u] = tot; }
 signed main(void){
-    int n;scanf("%d",&n);init();
+    scanf("%d",&n);init();
     for(int i = 1,u,v,w;i < n;++i){
         scanf("%d%d%d",&u,&v,&w);
         add_edge(u,v,w);
