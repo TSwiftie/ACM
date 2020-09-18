@@ -26,5 +26,6 @@ const int N = 1e5+10;
 int p[N],n,q;
 signed main(void){
     IOS;cin >> n >> q;for(int i = 1;i <= n;++i) cin >> p[i];
+    sort(p+1,p+1+n);
     return 0;
 }
