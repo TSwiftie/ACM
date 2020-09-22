@@ -25,3 +25,4 @@ signed main(void){
     ll N;scanf("%lld",&N);
     return 0;
 }
+//k*(k+1) = 2*x*n;
