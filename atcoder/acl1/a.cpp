@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <cstdio>
+#include <ctime>
 #include <ext/rope>
 //#define int long long
 #define lowbit(x) (x&-x)
@@ -23,6 +24,7 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const int N = 2e5+10;
+const char *INPUT = "/home/ts/code/in.in";
 struct P{
     int x, y, id;
     bool operator < (const P&t) const{
@@ -32,7 +34,7 @@ struct P{
 int find(int x){ return f[x]==x?x:f[x]=find(f[x]); }
 int stk[N],t,b[N],d;
 signed main(void){
-    //freopen("/home/ts/code/in.in", "r", stdin);
+    //freopen(INPUT, "r", stdin);
     scanf("%d",&n);
     for(int i = 1,x,y;i <= n;++i){
         scanf("%d%d",&x,&y);
