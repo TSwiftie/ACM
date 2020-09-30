@@ -21,8 +21,28 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
+void exgcd(ll a,ll b,ll &d,ll &x,ll &y){
+    if(!b) { d = a;x = 1;y = 0;return; }
+    exgcd(b,a%b,d,y,x);
+    y -= a/b*x;
+}
 signed main(void){
-    ll N;scanf("%lld",&N);
+    ll n;scanf("%lld",&n);n<<=1;
+    ll ans = n%2?n:2*n;
+    for(ll i = 1;i*i <= n;++i){
+        if(n%i==0 and __gcd(i,n/i)==1){
+            ll d,x,y;
+            exgcd(i, n/i, d, x, y);
+            while(i*x <= 1) { x+=n/i;y-=i; }
+            ans = min(ans,i*x-1);
+            while(n/i*y <= 1) { x-=n/i;y+=i; }
+            ans = min(ans,n/i*y-1);
+        }
+    }
+    printf("%lld\n",ans);
     return 0;
 }
-//k*(k+1) = 2*x*n;
+//a*x + k = 0
+//b*y + k = -1
+//a*x + b*y + 2*k = -1
+//a*x + b*y = -2*k-1
