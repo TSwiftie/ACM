@@ -23,17 +23,23 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const char *INPUT = "/home/ts/code/in.in";
 const int N = 1e5+10;
-int f[N];
-int func(int n,int m){
-    for(int i = 1;i <= n;++i){
-        f[i] = (f[i-1] + m) % i;
+struct Edge{ int u,v,w; }edge[N];int f[N];
+bool cmp(Edge &a,Edge &b){ return a.w < b.w; }
+int find(int x){ return f[x]==x?x:f[x]=find(f[x]); }
+void solve(int cas){
+    int n, m;scanf("%d%d",&n,&m);
+    for(int i = 1;i <= n;++i) f[i] = i;
+    for(int i = 1;i <= m;++i){ scanf("%d%d%d",&edge[i].u,&edge[i].v,&edge[i].w); }
+    sort(edge+1,edge+m+1,cmp);
+    int cnt = 0,ans = 0;
+    for(int i = 1;i <= m;++i){
+        int u = edge[i].u,v = edge[i].v,w = edge[i].w;
+        int fu = find(u),fv = find(v);
+        if(fu!=fv){ f[fv] = fu;++cnt;ans += w; }
     }
-    return f[n] + 1;
+    printf("Case #%d: %d meters\n",cas,ans);
 }
 signed main(void){
-    IOS;int n, m;
-    while(cin >> n >> m,(n&&m)){
-        cout << func(n,m) << endl;
-    }
+    int t,cas = 0;for(scanf("%d",&t);t--;) solve(++cas);
     return 0;
 }
