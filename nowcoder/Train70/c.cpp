@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
-#include <climits>
-#include <cstdio>
 #include <ext/rope>
-//#define int long long
+#define int long long
 #define lowbit(x) (x&-x)
 #define SZ(x) ((int)x.size())
 #define all(x) x.begin(),x.end()
@@ -24,26 +22,16 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const char *INPUT = "/home/ts/code/in.in";
-const char *mod = "puleyaknoi";
-const int N = 1e5+10;
-char ch[N];int g[N][30];
+int n, k;
+vi fac;
 void solve(){
-    scanf("%s",ch+1);int len = strlen(ch+1),ans = INF;
-    for(int i = 0;i < 26;++i) g[len+1][i] = -1;
-    for(int i = len;i;--i){
-        for(int j = 0;j < 26;++j) g[i][j] = g[i+1][j];
-        g[i][ch[i]-'a'] = i;
+    scanf("%lld%lld",&n,&k);
+    if(n==1 && k%2==0) printf("1\n");
+    else if(n==1 && k%2==1) printf("2\n");
+    else{
     }
-    for(int i = 1;i <= len;++i){
-        if(ch[i]=='p'){
-            int id = 0,j = g[i][mod[id++]-'a'];
-            while(j!=-1 && id < 10) j = g[j][mod[id++]-'a'];
-            if(j!=-1 && id==10) ans = min(ans,j-i+1);
-        }
-    }
-    printf("%d\n",ans==INF?-1:ans);
 }
 signed main(void){
-    int t;for(scanf("%d",&t);t--;) solve();
+    int t;for(scanf("%lld",&t);t--;) solve();
     return 0;
 }
