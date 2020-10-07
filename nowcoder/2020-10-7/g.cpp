@@ -23,6 +23,6 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const char *INPUT = "/home/ts/code/in.in";
 signed main(void){
-    int a, b, c;while(cin >> a >> b >> c) cout << a + b + c << endl;
+    int a, b;while(cin >> a >> b) cout << a + b << endl;
     return 0;
 }
