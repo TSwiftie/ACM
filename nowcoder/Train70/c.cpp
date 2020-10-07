@@ -22,16 +22,36 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const char *INPUT = "/home/ts/code/in.in";
-int n, k;
+const int N = 1e7+10;
+int n, k, mu[N], pri[N], tot;bool vis[N];
 vi fac;
-void solve(){
-    scanf("%lld%lld",&n,&k);
-    if(n==1 && k%2==0) printf("1\n");
-    else if(n==1 && k%2==1) printf("2\n");
-    else{
+void getMu(){
+    mu[1] = 1;
+    for(int i = 2;i < N;++i){
+        if(!vis[i]) pri[++tot] = i,mu[i] = -1;
+        for(int j = 1;j <= tot && i * pri[j] < N;++j){
+            vis[i * pri[j]] = true;
+            if(i % pri[j]==0){
+                mu[i * pri[j]] = 0;
+                break;
+            }
+            mu[i * pri[j]] = -mu[i];
+        }
     }
 }
+void solve(){
+    scanf("%lld%lld",&n,&k);
+    int x = n;
+    while(k){
+        if(mu[x]==0) break;
+        if(mu[x]==-1 && mu[x-1]==1){ x -= (k&1);break; }
+        x += mu[x];
+        --k;
+    }
+    printf("%lld\n",x);
+}
 signed main(void){
+    getMu();
     int t;for(scanf("%lld",&t);t--;) solve();
     return 0;
 }
