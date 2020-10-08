@@ -22,9 +22,6 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const char *INPUT = "/home/ts/code/in.in";
-const int N = 1e5+10;
-int a[N],n;
 signed main(void){
-    scanf("%d",&n);for(int i = 1;i <= n;++i) scanf("%d",a+i);
     return 0;
 }
