@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include <ext/rope>
-#define int long long
+//#define int long long
 #define lowbit(x) (x&-x)
 #define SZ(x) ((int)x.size())
 #define all(x) x.begin(),x.end()
@@ -21,15 +21,16 @@ const int INF = 0x3f3f3f3f;
 const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
-const int N = 1e5+10;
-const int mod = 998244353;
-int ksm(int a,int b,int res = 1){ for(;b;b >>= 1,a = a * a % mod) if(b&1) res = res * a % mod; return res; }
-int n, m, ans;
-int p[N] = {1};
+const char *INPUT = "/home/ts/code/in.in";
+void solve(){
+    ll x, y;scanf("%lld%lld",&x,&y);
+    if(x < 2*y){ puts("-1");return; }
+    ll k = x - 2 * y;
+    for(int i = 0;i < 63;++i)
+        if(k & (1ll << i) && y & (1ll << i)){ puts("-1");return; }
+    printf("%lld\n",k);
+}
 signed main(void){
-    scanf("%lld%lld",&n,&m);
-    for(int i = 1;i <= n;++i) p[i] = p[i-1] * i % mod;
-    for(int i = 0;i <= m+1;++i) ans = (ans + p[n]*ksm(p[i],mod-2)%mod*ksm(p[n-i],mod-2)%mod)%mod;
-    printf("%lld\n",ans);
+    int t;for(scanf("%d",&t);t--;) solve();
     return 0;
 }
