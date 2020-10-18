@@ -22,24 +22,24 @@ const LL INF_ll = 0x3f3f3f3f3f3f3f3fLL;
 const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const char *INPUT = "/home/ts/code/in.in";
-const int N = 204;
-string s[N];
+char s[201][201];int n;
+bool check(char x,char y){
+    int res = (s[1][2]!=x) + (s[2][1]!=x) + (s[n-1][n]!=y) + (s[n][n-1]!=y);
+    if(res <= 2){
+        printf("%d\n",res);
+        if(s[1][2]!=x) printf("1 2\n");
+        if(s[2][1]!=x) printf("2 1\n");
+        if(s[n-1][n]!=y) printf("%d %d\n",n-1,n);
+        if(s[n][n-1]!=y) printf("%d %d\n",n,n-1);
+        return true;
+    }
+    return false;
+}
 signed main(void){
-    IOS;int t,n;for(cin >> t;t--;){
-        cin >> n;for(int i = 0;i < n;++i) cin >> s[i];
-        int a1,a2,b1,b2;
-        a1 = s[0][1]=='1';b1 = s[n-2][n-1]=='1';
-        a2 = s[1][0]=='1';b2 = s[n-1][n-2]=='1';
-        if(a1==a2 && b1==b2 && a1==b1){
-            cout << 2 << endl;
-            printf("1 2\n");
-            printf("2 1\n");
-        }else if(a1==a2 && b1==b2 && a1!=b1) cout << 0 << endl;
-        else if(a1==a2 && b1!=b2){
-            printf("1\n");
-            if(b1==a1) printf("%d %d\n",n-1,n);
-            else if(b2==a1) printf("%d %d\n",n,n-1);
-        }
+    int t;for(scanf("%d",&t);t--;){
+        scanf("%d",&n);
+        for(int i = 1;i <= n;++i) scanf("%s",s[i]+1);
+        if(!check('0','1')) check('1','0');
     }
     return 0;
 }
