@@ -25,29 +25,15 @@ const char *INPUT = "/home/ts/code/in.in";
 signed main(void){
     IOS;int t;cin >> t;for(int cas = 1;cas <= t;++cas){
         int n, k;cin >> n >> k;int ans = 0;
-        if(k >= 32 || k == 1){
-            cout << "Case #" << cas << ": " << n << endl;
-            continue;
+        if(k==1 || k >= 32) cout << "Case #" << cas << ": " << n << endl;
+        else{
+            for(int i = 1;i <= n;++i){
+                int l = pow(i,k),r = pow(i+1,k)-1;
+                if(l > n) break;r = min(r,n);
+                ans += (r/i) - ((l-1)/i);
+            }
+            cout << "Case #" << cas << ": " << ans << endl;
         }
-        vi a,b;
-        int st = 1;
-        while(true){
-            int tmp = pow(st,k);
-            a.push_back(st);
-            b.push_back(tmp);
-            if(tmp > n) break;
-        }
-        /*
-         * if(k==1) cout << "Case #" << cas << ": " << n << endl;
-         * else{
-         *     for(int i = 1;i <= n;++i){
-         *         int l = pow(i,k),r = pow(i+1,k)-1;
-         *         if(l > n) break;r = min(r,n);
-         *         ans += (r/i) - ((l-1)/i);
-         *     }
-         *     cout << "Case #" << cas << ": " << ans << endl;
-         * }
-         */
     }
     return 0;
 }

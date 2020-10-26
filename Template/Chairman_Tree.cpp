@@ -83,8 +83,7 @@ signed main(void){
 		sort(rk+1,rk+1+n,cmp);
 		for(int i = 1;i <= n;i++) pos[rk[i]] = i;
 		root[0] = tree.buildTo(1,n);
-		for(int i = 1;i <= n;i++)
-			root[i] = tree.update(root[i-1],1,n,pos[i],1);
+		for(int i = 1;i <= n;i++) root[i] = tree.update(root[i-1],1,n,pos[i],1);
 		while(m--){
 			int l, r, k;
 			scanf("%d%d%d",&l,&r,&k);
