@@ -60,6 +60,10 @@ signed main(void){
     init();
     IOS;for(cin >> t;t--;){
         cin >> n >> m;
+        if(n==0 || m==0){
+            cout << 0 << endl;
+            continue;
+        }
         for(int i = 1;i <= n;++i) sn[i] = sn[i-1] + m*i/n;
         for(int i = 1;i <= m;++i) sm[i] = sm[i-1] + n*i/m;
         int d = __gcd(n,m);
