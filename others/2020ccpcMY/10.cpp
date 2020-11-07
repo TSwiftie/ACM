@@ -23,6 +23,26 @@ const double PI = acos(-1.0);
 const double EPS = 1e-8;
 const char *INPUT = "/home/ts/code/in.in";
 signed main(void){
+    int t;scanf("%d",&t);for(int cas = 1;cas <= t;++cas){
+        int n;scanf("%d",&n);
+        printf("Case #%d: ",cas);
+        if(n&1) printf("1\n");
+        else if(n % 4 == 0) printf("2\n");
+        else if(n == 6) printf("-1\n");
+        else{
+            if(n % 3 == 0) printf("2\n");
+            else if(n % 3 == 1){
+                int a = (n - 1) / 3;
+                int b = a - 1,c = a + 2;
+                if(__gcd(b, c)==1) printf("3\n");
+                else printf("4\n");
+            }else if(n % 3 == 2){
+                int a = (n + 1) / 3;
+                int b = a - 2,c = a + 1;
+                if(__gcd(b, c)==1) printf("3\n");
+                else printf("4\n");
+            }
+        }
+    }
     return 0;
 }
-//8: 3 5
