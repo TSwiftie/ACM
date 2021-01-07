@@ -31,7 +31,7 @@ pair<int,string>a[3010];
 int ans[3010],n;
 signed main(void){
     cin >> n;
-    for(int i = 0;i < n;++i)
+    for(int i = 0;i < n;++i) 
         cin >> a[i].second >> a[i].first;
     sort(a,a+n);
     for(int i = 0;i < n;++i){
@@ -45,7 +45,7 @@ signed main(void){
             if(ans[j] >= ans[i])
                 ++ans[j];
     }
-    for(int i = 0;i < n;++i)
+    for(int i = 0;i < n;++i) 
         cout << a[i].second << " " << 3000+ans[i] << endl;
     return 0;
 }
