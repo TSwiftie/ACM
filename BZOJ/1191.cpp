@@ -31,31 +31,31 @@ bool mp[N][N],vis[N];
 int linker[N];
 int n, m;
 bool dfs(int u){
-	for(int v = 0;v < n;v++){
-		if(!vis[v]&&mp[u][v]){
-			vis[v] = true;
-			if(linker[v]==-1||dfs(linker[v])){
-				linker[v] = u;
-				return true;
-			}
-		}
-	}
-	return false;
+    for(int v = 0;v < n;v++){
+        if(!vis[v]&&mp[u][v]){
+            vis[v] = true;
+            if(linker[v]==-1||dfs(linker[v])){
+                linker[v] = u;
+                return true;
+            }
+        }
+    }
+    return false;
 }
 signed main(void){
 	scanf("%d%d",&n,&m);
 	for(int i = 1;i <= m;i++){
-		int a, b;
-		scanf("%d%d",&a,&b);
-		mp[i][a] = mp[i][b] = true;
-	}
-	memset(linker,-1,sizeof linker);
-	int ans = 0;
-	for(int i = 1;i <= m;i++){
-		memset(vis,false,sizeof vis);
-		if(dfs(i)) ans++;
-		else break;
-	}
-	printf("%d\n",ans);
-	return 0;
+        int a, b;
+        scanf("%d%d",&a,&b);
+        mp[i][a] = mp[i][b] = true;
+    }
+    memset(linker,-1,sizeof linker);
+    int ans = 0;
+    for(int i = 1;i <= m;i++){
+        memset(vis,false,sizeof vis);
+        if(dfs(i)) ans++;
+        else break;
+    }
+    printf("%d\n",ans);
+    return 0;
 }
