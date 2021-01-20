@@ -33,37 +33,37 @@ char ch[N];
 int R[N],c[N];
 E a[N],b[N];
 void fft(E *a,int f){
-	for(int i = 0;i < n;i++) if(i < R[i]) swap(a[i],a[R[i]]);
-	for(int i = 1;i < n;i<<=1){
-		E wn(cos(PI/i),f*sin(PI/i));
-		for(int j = 0;j < n;j+=(i<<1)){
-			E w(1,0);
-			for(int k = 0;k < i;k++,w*=wn){
-				E x = a[j+k],y = w*a[j+k+i];
-				a[j+k] = x+y;a[j+k+i] = x-y;
-			}
-		}
-	}
-	if(f==-1) for(int i = 0;i < n;i++) a[i] /= n;
+    for(int i = 0;i < n;i++) if(i < R[i]) swap(a[i],a[R[i]]);
+    for(int i = 1;i < n;i<<=1){
+        E wn(cos(PI/i),f*sin(PI/i));
+        for(int j = 0;j < n;j+=(i<<1)){
+            E w(1,0);
+            for(int k = 0;k < i;k++,w*=wn){
+                E x = a[j+k],y = w*a[j+k+i];
+                a[j+k] = x+y;a[j+k+i] = x-y;
+            }
+        }
+    }
+    if(f==-1) for(int i = 0;i < n;i++) a[i] /= n;
 }
 signed main(void){
-	scanf("%d",&n);n--;
-	scanf("%s",ch);
-	for(int i = 0;i <= n;i++) a[i] = ch[n-i]-'0';
-	scanf("%s",ch);
-	for(int i = 0;i <= n;i++) b[i] = ch[n-i]-'0';
-	m = 2*n;
-	for(n = 1;n <= m;n<<=1) L++;
-	for(int i = 0;i < n;i++) R[i] = (R[i>>1]>>1)|((i&1)<<(L-1));
-	fft(a,1);fft(b,1);
-	for(int i = 0;i <= n;i++) a[i] *= b[i];
-	fft(a,-1);
-	for(int i = 0;i <= m;i++) c[i] = (int)(a[i].real()+0.1);
-	for(int i = 0;i <= m;i++)
-		if(c[i] >= 10){
-			c[i+1] += c[i]/10,c[i] %= 10;
-			if(i==m) m++;
-		}
-	for(int i = m;i >= 0;i--) printf("%d",c[i]);
-	return 0;
+    scanf("%d",&n);n--;
+    scanf("%s",ch);
+    for(int i = 0;i <= n;i++) a[i] = ch[n-i]-'0';
+    scanf("%s",ch);
+    for(int i = 0;i <= n;i++) b[i] = ch[n-i]-'0';
+    m = 2*n;
+    for(n = 1;n <= m;n<<=1) L++;
+    for(int i = 0;i < n;i++) R[i] = (R[i>>1]>>1)|((i&1)<<(L-1));
+    fft(a,1);fft(b,1);
+    for(int i = 0;i <= n;i++) a[i] *= b[i];
+    fft(a,-1);
+    for(int i = 0;i <= m;i++) c[i] = (int)(a[i].real()+0.1);
+    for(int i = 0;i <= m;i++)
+        if(c[i] >= 10){
+            c[i+1] += c[i]/10,c[i] %= 10;
+            if(i==m) m++;
+        }
+    for(int i = m;i >= 0;i--) printf("%d",c[i]);
+    return 0;
 }
